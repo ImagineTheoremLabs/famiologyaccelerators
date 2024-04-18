@@ -3,5 +3,4 @@ pdfplumber
 pillow
 Image
 pdf2image
-fitz
 PyMuPDF
