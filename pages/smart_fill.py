@@ -40,7 +40,7 @@ def convert_image_to_pdf(image_data):
     return pdf_bytes
 
 # Streamlit UI
-st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
+# st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
 
 st.markdown(
     """
