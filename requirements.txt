@@ -1,7 +1,6 @@
 streamlit
 pdfplumber
 pillow
-PyMuPDF
 Image
 pdf2image
 convert_from_bytes
