@@ -5,3 +5,4 @@ Image
 pdf2image
 PyMuPDF
 transformers
+PyTorch
