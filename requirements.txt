@@ -6,4 +6,4 @@ Image
 pdf2image
 transformers
 convert_from_bytes
-io
+
