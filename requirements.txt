@@ -1,4 +1,6 @@
 streamlit
 pdfplumber
 Image
+pdf2image
 convert_from_bytes
+io
