@@ -1,6 +1,9 @@
 streamlit
 pdfplumber
+pillow
+PyMuPDF
 Image
 pdf2image
+transformers
 convert_from_bytes
 io
