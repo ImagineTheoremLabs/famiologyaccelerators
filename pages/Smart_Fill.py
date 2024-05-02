@@ -7,7 +7,7 @@ import io
 
 page_icon = Image.open("pages/favicon.ico")
 st.set_page_config(page_title="Smart Fill", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
-logo = Image.open("./favicon.ico")
+logo = Image.open("pages/favicon.ico")
 
 # Function to extract attributes from PDF document using pdfplumber
 def extract_attributes_from_pdf(file_path, selected_attributes, attribute_mappings):
