@@ -50,8 +50,8 @@ def main():
 
     #with st.sidebar.container():
         # Section 1: Apps
-    with st.expander("Apps"):
-        if st.button("<a href='https://famiologydocdetector.streamlit.app/' target='_blank' class='button'>Document Detector</a>", unsafe_allow_html=True):
+    #with st.expander("Apps"):
+    if st.button("<a href='https://famiologydocdetector.streamlit.app/' target='_blank' class='button'>Document Detector</a>", unsafe_allow_html=True)
             #st.markdown("<a href='https://famiologydocdetector.streamlit.app/' target='_blank' class='button'>Go to Document Detector Website</a>", unsafe_allow_html=True)
 
 if __name__ == "__main__":
