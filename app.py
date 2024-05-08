@@ -31,7 +31,7 @@ st.markdown(
 # def main():
 #     with st.sidebar.container():
 #         # Section 1: Apps
-#         with st.expander("Apps"):
+#         #with st.expander("Apps"):
 #             st.markdown("Document Detector")
 #             st.markdown('<a href="https://famiology-smart-fill.streamlit.app/" target="_self">Smart Fill</a>', unsafe_allow_html=True)
 #         # Section 2: Dashboards
@@ -40,3 +40,13 @@ st.markdown(
 
 # if __name__ == "__main__":
 #     main()
+
+
+def main():
+    with st.sidebar.container():
+        st.markdown('<a href="https://famiologydocdetector.streamlit.app/" target="_self">'Document Detector</a>',unsafe_allow_html=True)
+
+if __name__ == "__main__":
+    main()
+        
+    
