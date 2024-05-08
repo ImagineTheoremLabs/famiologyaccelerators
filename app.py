@@ -43,7 +43,7 @@ if st.button("Click here to visit the document detector website"):
         st.markdown("[Document Detector Website](https://famiologydocdetector.streamlit.app/)")
 def main():
     page_icon = Image.open("pages/favicon.ico")
-    st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
+    #st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
     logo = Image.open("pages/favicon.ico")
 
     # Streamlit UI
