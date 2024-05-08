@@ -36,11 +36,7 @@
 import streamlit as st
 from PIL import Image
 
-def document_detector():
-    st.title("Document Detector Page")
-if st.button("Click here to visit the document detector website"):
-        # Redirect to the provided link
-        st.markdown("[Document Detector Website](https://famiologydocdetector.streamlit.app/)")
+
 def main():
     page_icon = Image.open("pages/favicon.ico")
     #st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
@@ -63,9 +59,9 @@ with st.sidebar.container():
         # Section 1: Apps
         with st.expander("Apps"):
             if st.button("Document Detector"):
-                document_detector()
+                st.markdown("(https://famiologydocdetector.streamlit.app/)")
             if st.button("Smart Fill"):
-                st.markdown("[Smart Fill Website](https://famiology-smart-fill.streamlit.app/)")
+                st.markdown("(https://famiology-smart-fill.streamlit.app/)")
 
 if __name__ == "__main__":
     main()
