@@ -8,12 +8,12 @@ logo = Image.open("pages/favicon.ico")
 # Streamlit UI
 st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
 
-st.sidebar.expander("Apps")
+# st.sidebar.expander("Apps")
 
-st.sidebar.expander("Dashboards")
+# st.sidebar.expander("Dashboards")
 
-st.sidebar.selectbox('Apps', options=['Document Detector', 'Smart Fill'], index=0)
-st.sidebar.selectbox('Dashboards', options=['Dashboard'], index=1)
+# st.sidebar.selectbox('Apps', options=['Document Detector', 'Smart Fill'], index=0)
+# st.sidebar.selectbox('Dashboards', options=['Dashboard'], index=1)
 
 st.markdown(
     """
@@ -32,7 +32,7 @@ def main():
     with st.sidebar.container():
         # Section 1: Apps
         with st.expander("Apps"):
-            st.markdown("Document Detector")
+            st.markdown("<a href="https://famiologydocdetector.streamlit.app/" target="_self">Document Detector</a>',unsafe_allow_html=True)
             st.markdown('<a href="https://famiology-smart-fill.streamlit.app/" target="_self">Smart Fill</a>', unsafe_allow_html=True)
         # Section 2: Dashboards
         with st.expander("Dashboards"):
