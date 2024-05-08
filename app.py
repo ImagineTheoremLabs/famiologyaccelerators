@@ -59,9 +59,9 @@ with st.sidebar.container():
         # Section 1: Apps
         with st.expander("Apps"):
             if st.button("Document Detector"):
-                st.markdown("(https://famiologydocdetector.streamlit.app/)")
+                st.markdown("https://famiologydocdetector.streamlit.app/")
             if st.button("Smart Fill"):
-                st.markdown("(https://famiology-smart-fill.streamlit.app/)")
+                st.markdown("https://famiology-smart-fill.streamlit.app/")
 
 if __name__ == "__main__":
     main()
