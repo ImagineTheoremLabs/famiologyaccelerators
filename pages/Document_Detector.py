@@ -54,5 +54,5 @@ def main():
             if st.button("Document Detector"):
                 st.markdown("<a href='https://famiologydocdetector.streamlit.app/' target='_blank' class='button'>Go to Document Detector Website</a>", unsafe_allow_html=True)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
