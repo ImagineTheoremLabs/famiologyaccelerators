@@ -15,8 +15,7 @@ import streamlit as st
 
 def main():
    # st.title("Document Detector Page")
-if st.button("Click here to visit the document detector website"):
-        # Redirect to the provided link
+    if st.button("Click here to visit the document detector website"):
         st.markdown("[Document Detector Website](https://famiologydocdetector.streamlit.app/)")
 
 if __name__ == "__main__":
