@@ -14,7 +14,7 @@ page_icon = Image.open("./pages/favicon.ico")
 st.set_page_config(page_title="Smart Fill", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
 
 
-file_path = "data/FamilyOfficeEntityDataSampleV1.1.xlsx"  # Replace "your_file.xlsx" with the path to your Excel file
+file_path = "data/FamilyOfficeEntityDataSampleV1.2.xlsx"  # Replace "your_file.xlsx" with the path to your Excel file
 sheetName_clProfile = "Client Profile"
 sheetName_familyMember = "Family Members"
 df_clProfile = pd.read_excel(file_path, sheet_name=sheetName_clProfile)
