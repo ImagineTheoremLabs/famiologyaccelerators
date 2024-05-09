@@ -6,3 +6,7 @@ pdf2image
 PyMuPDF
 transformers
 matplotlib
+numpy
+plotly
+streamlit-plotly-events
+pandas
