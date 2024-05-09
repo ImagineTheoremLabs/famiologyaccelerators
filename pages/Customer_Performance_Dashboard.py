@@ -101,7 +101,7 @@ with col_2[0]:
     metric_col =  st.columns(1)
 
     with metric_col[0]:
-        st.markdown(f"<div style='text-align: center;'>{million_representation}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center;font-size:2vh'>{million_representation}</div>", unsafe_allow_html=True)
 
 
 
@@ -116,7 +116,7 @@ with col_2[1]:
 
 
     with totalCust_col[0]:
-        st.markdown(f"<div style='text-align: center;'>{num_rows}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center;font-size:2vh'>{num_rows}</div>", unsafe_allow_html=True)
 
 with col_2[2]:
 
@@ -130,7 +130,7 @@ with col_2[2]:
     age_col =  st.columns(1)
 
     with age_col[0]:
-        st.markdown(f"<div style='text-align: center;'>{int(average_age)}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center;font-size:2vh'>{int(average_age)}</div>", unsafe_allow_html=True)
 
 with col_2[3]:
     # st.markdown("Year Slicer")
@@ -301,6 +301,8 @@ with col_3[1]:
     sizes = [percentageForChld, 100 - percentageForChld]
     explode = (0.0, 0.0, 0.0, 0.0, 0.0)  # only "explode" the 2nd slice (i.e. 'Hogs')
     fig1, ax1 = plt.subplots(figsize=(3,3))
+    ax1.set_facecolor("white")  # RGB values as a tuple
+
     ax1.pie(revenue_by_age_group, labels=labels_ages, autopct='%0.1f%%', 
             shadow=False, startangle=90)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
@@ -421,8 +423,8 @@ with col_4[2]:
 
         # st.metric(label="**Males**", value=million_representation_male)
 
-        st.markdown("<h5 style='text-align: center; padding:2vh; font-size:2vh'>Males</h5>", unsafe_allow_html=True)
-        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:1vh''>{million_representation_male}</div>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: center;padding:2vh; font-size:3vh'>Males</h5>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:2vh'>{million_representation_male}</div>", unsafe_allow_html=True)
     
 
     with genderRev[1]:
@@ -431,6 +433,6 @@ with col_4[2]:
         million_representation_female = "$ {:.2f}M".format(total_sum_female / 1_000_000)
 
 
-        st.markdown("<h5 style='text-align: center; padding:2vh; font-size:2vh'>Females</h5>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: center; padding:2vh; font-size:3vh'>Females</h5>", unsafe_allow_html=True)
     
-        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:1vh'>{million_representation_female}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:2vh'>{million_representation_female}</div>", unsafe_allow_html=True)
