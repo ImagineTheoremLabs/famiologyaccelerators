@@ -421,8 +421,8 @@ with col_4[2]:
 
         # st.metric(label="**Males**", value=million_representation_male)
 
-        st.markdown("<h5 style='text-align: center;'>Males</h5>", unsafe_allow_html=True)
-        st.markdown(f"<div style='text-align: center;'>{million_representation_male}</div>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: center; padding:2vh; font-size:2vh'>Males</h5>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:1vh''>{million_representation_male}</div>", unsafe_allow_html=True)
     
 
     with genderRev[1]:
@@ -431,6 +431,6 @@ with col_4[2]:
         million_representation_female = "$ {:.2f}M".format(total_sum_female / 1_000_000)
 
 
-        st.markdown("<h5 style='text-align: center; padding:2vh; font-size:3vh'>Females</h5>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: center; padding:2vh; font-size:2vh'>Females</h5>", unsafe_allow_html=True)
     
-        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:2vh'>{million_representation_female}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:1vh'>{million_representation_female}</div>", unsafe_allow_html=True)
