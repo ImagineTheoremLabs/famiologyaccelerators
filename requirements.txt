@@ -10,3 +10,4 @@ numpy
 plotly
 streamlit-plotly-events
 pandas
+openpyxl
