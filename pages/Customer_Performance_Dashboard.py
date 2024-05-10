@@ -101,7 +101,7 @@ with col_2[0]:
     metric_col =  st.columns(1)
 
     with metric_col[0]:
-        st.markdown(f"<div style='text-align: center;font-size:2vh'>{million_representation}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; font-size:4vh'>{million_representation}</div>", unsafe_allow_html=True)
 
 
 
@@ -116,7 +116,7 @@ with col_2[1]:
 
 
     with totalCust_col[0]:
-        st.markdown(f"<div style='text-align: center;font-size:2vh'>{num_rows}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center;font-size:4vh'>{num_rows}</div>", unsafe_allow_html=True)
 
 with col_2[2]:
 
@@ -130,7 +130,7 @@ with col_2[2]:
     age_col =  st.columns(1)
 
     with age_col[0]:
-        st.markdown(f"<div style='text-align: center;font-size:2vh'>{int(average_age)}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center;font-size:4vh'>{int(average_age)}</div>", unsafe_allow_html=True)
 
 with col_2[3]:
     # st.markdown("Year Slicer")
@@ -246,13 +246,26 @@ with col_3[0]:
 
         # st.write("<div style='text-align: center; font-weight: bold;'>Revenue from customers with children</div>", unsafe_allow_html=True)
         st.write("<h4 style='text-align: center; font-weight: bold;'>Revenue from customers with children</h4>", unsafe_allow_html=True)
-        labels = 'Revenue with child', 'Revenue without child'
+        labels = 'With child', 'without child'
         sizes = [percentageForChld, 100 - percentageForChld]
-        explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
+        explode = (0, 0.1, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
-        fig1, ax1 = plt.subplots(figsize=(7, 7))
-        ax1.pie(sizes, explode=explode, labels=labels, autopct='%0.1f%%',
-                shadow=True, startangle=90)
+        fig1, ax1 = plt.subplots(figsize=(5, 5))
+        ax1.set_facecolor("white")  # RGB values as a tuple
+        patches, texts, autotexts = ax1.pie(sizes, labels=labels, autopct='%0.1f%%',
+                                    shadow=False, startangle=90)
+
+        # Set the color of labels to white
+        for text in texts:
+            text.set_color('white')
+            text.set_fontsize(18)  # Adjust the font size here
+
+
+        # Set the color of autopct labels to white
+        for autotext in autotexts:
+            autotext.set_color('white')
+            autotext.set_fontsize(12)  # Adjust the font size here
+
         ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
         fig1.patch.set_alpha(0)
@@ -286,29 +299,35 @@ with col_3[1]:
 
     # print("bins", bins)
 
-    bins = [30, 40, 50, 60]
-    labels_ages = ['30-40', '40-50', '50-60']
+    bins = [25, 40, 50, 60]
+    labels_ages = ['25-40', '40-50', '50-60']
 
 
-    df_sorted['AgeGroup'] = pd.cut(df_sorted['Age'], bins=bins, labels=labels_ages, right=True)
+    df_sorted['AgeGroup'] = pd.cut(df_sorted['Age'], bins=bins, labels=labels_ages, right=False)
 
     revenue_by_age_group = df_sorted.groupby('AgeGroup')['Net Worth'].sum().tolist()
 
     print("revenue_by_age_group", revenue_by_age_group)
 
 
-    labels = 'Revenue with child', 'Revenue without child'
-    sizes = [percentageForChld, 100 - percentageForChld]
-    explode = (0.0, 0.0, 0.0, 0.0, 0.0)  # only "explode" the 2nd slice (i.e. 'Hogs')
-    fig1, ax1 = plt.subplots(figsize=(3,3))
-    ax1.set_facecolor("white")  # RGB values as a tuple
+    fig1, ax1 = plt.subplots(figsize=(2,2))
+    # ax1.set_facecolor("white")  # RGB values as a tuple
 
-    ax1.pie(revenue_by_age_group, labels=labels_ages, autopct='%0.1f%%', 
+    patches, texts, autotexts = ax1.pie(revenue_by_age_group, labels=labels_ages, autopct='%0.1f%%', 
             shadow=False, startangle=90)
+    
+    for text in texts:
+        text.set_color('white')
+        text.set_fontsize(6)  # Adjust the font size her
+
+    for autotext in autotexts:
+        autotext.set_color('white')
+        autotext.set_fontsize(6)  # Adjust the font size her
+
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
 
-    colors = ['green', 'orange', 'red', 'blue', 'yellow']
+    colors = ['green', 'orange', 'red']
 
     fig1.patch.set_alpha(0)
 
@@ -327,7 +346,7 @@ with col_3[2]:
     fig, ax = plt.subplots()
     # ax.set_facecolor('rgb(14, 17, 23)')  # Set the background color
     ax.set_facecolor((14/255, 17/255, 23/255))  # RGB values as a tuple
-    ax.set_facecolor("white")  # RGB values as a tuple
+    # ax.set_facecolor("white")  # RGB values as a tuple
 
 
 
@@ -369,7 +388,7 @@ with col_4[0]:
     fig, ax = plt.subplots()
     # ax.set_facecolor('rgb(14, 17, 23)')  # Set the background color
     ax.set_facecolor((14/255, 17/255, 23/255))  # RGB values as a tuple
-    ax.set_facecolor("white")  # RGB values as a tuple
+    # ax.set_facecolor("white")  # RGB values as a tuple
 
     df = pd.DataFrame({"Net Worth in Millions": top_five_individuals["Net Worth"].to_list()}, index=top_five_individuals["First Name"])
 
@@ -424,7 +443,7 @@ with col_4[2]:
         # st.metric(label="**Males**", value=million_representation_male)
 
         st.markdown("<h5 style='text-align: center;padding:2vh; font-size:3vh'>Males</h5>", unsafe_allow_html=True)
-        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:2vh'>{million_representation_male}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:4vh'>{million_representation_male}</div>", unsafe_allow_html=True)
     
 
     with genderRev[1]:
@@ -435,4 +454,4 @@ with col_4[2]:
 
         st.markdown("<h5 style='text-align: center; padding:2vh; font-size:3vh'>Females</h5>", unsafe_allow_html=True)
     
-        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:2vh'>{million_representation_female}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:4vh'>{million_representation_female}</div>", unsafe_allow_html=True)
