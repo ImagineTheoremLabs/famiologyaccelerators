@@ -250,7 +250,7 @@ with col_3[0]:
         sizes = [percentageForChld, 100 - percentageForChld]
         explode = (0, 0.1, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
-        fig1, ax1 = plt.subplots(figsize=(5, 5))
+        fig1, ax1 = plt.subplots(figsize=(6, 6))
         ax1.set_facecolor("white")  # RGB values as a tuple
         patches, texts, autotexts = ax1.pie(sizes, labels=labels, autopct='%0.1f%%',
                                     shadow=False, startangle=90)
@@ -310,7 +310,7 @@ with col_3[1]:
     print("revenue_by_age_group", revenue_by_age_group)
 
 
-    fig1, ax1 = plt.subplots(figsize=(1,1))
+    fig1, ax1 = plt.subplots(figsize=(2,2))
     # ax1.set_facecolor("white")  # RGB values as a tuple
 
     patches, texts, autotexts = ax1.pie(revenue_by_age_group, labels=labels_ages, autopct='%0.1f%%', 
