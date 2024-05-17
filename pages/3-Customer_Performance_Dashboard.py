@@ -310,7 +310,7 @@ with col_3[1]:
     print("revenue_by_age_group", revenue_by_age_group)
 
 
-    fig1, ax1 = plt.subplots(figsize=(2,2))
+    fig1, ax1 = plt.subplots(figsize=(1,1))
     # ax1.set_facecolor("white")  # RGB values as a tuple
 
     patches, texts, autotexts = ax1.pie(revenue_by_age_group, labels=labels_ages, autopct='%0.1f%%', 
