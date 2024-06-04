@@ -1,7 +1,7 @@
 # import streamlit as st
 # from PIL import Image
 
-# page_icon = Image.open("pages/favicon.ico")
+# page_icon = Image.open("favicon.ico")
 # st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
 # logo = Image.open("pages/favicon.ico")
 
@@ -794,7 +794,7 @@ def customer_performance_dashboard():
 
 # page_icon = Image.open("page/favicon.ico")
 # st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
-logo = Image.open("page/favicon.ico")
+logo = Image.open("favicon.ico")
 
 # Streamlit UI
 st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
