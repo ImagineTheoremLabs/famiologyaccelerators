@@ -1,6 +1,6 @@
 streamlit
 pdfplumber
-Pillow
+pillow
 Image
 pdf2image
 PyMuPDF
