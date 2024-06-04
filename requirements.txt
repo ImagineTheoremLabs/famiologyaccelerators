@@ -1,6 +1,6 @@
-streamlit == 0.81.0
+streamlit
 pdfplumber
-Pillow >=7.2.0
+Pillow
 Image
 pdf2image
 PyMuPDF
@@ -9,5 +9,5 @@ matplotlib
 numpy
 plotly
 streamlit-plotly-events
-pandas >=0.21.0
+pandas 
 openpyxl
