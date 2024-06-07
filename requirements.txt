@@ -9,5 +9,5 @@ matplotlib
 numpy
 plotly
 streamlit-plotly-events
-pandas
+pandas 
 openpyxl
