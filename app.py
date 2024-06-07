@@ -16,7 +16,7 @@ import plotly.graph_objects as go
 from streamlit_plotly_events import plotly_events
 import base64
 
-page_icon = Image.open(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\favicon.ico")
+page_icon = Image.open("favicon.ico")
 st.set_page_config(page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
 
 # from streamlit_option_menu import option_menu
@@ -99,7 +99,7 @@ st.set_page_config(page_icon=page_icon, layout="wide", initial_sidebar_state="ex
 
 # st.markdown("# Home")
 
-file = open(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\FamiologyTextLogo.png", "rb")
+file = open("FamiologyTextLogo.png", "rb")
 contents = file.read()
 img_str = base64.b64encode(contents).decode("utf-8")
 buffer = io.BytesIO()
