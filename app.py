@@ -1,35 +1,3 @@
-# import streamlit as st
-# from PIL import Image
-
-# page_icon = Image.open("favicon.ico")
-# st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
-# logo = Image.open("pages/favicon.ico")
-
-# Streamlit UI
-# st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
-
-# st.markdown(
-#     """
-#     <style>
-#         section[data-testid="stSidebar"] {
-#             width: 400px !important; # Set the width to your desired value
-#         }
-#     </style>
-#     """,
-#     unsafe_allow_html=True,
-# )
-
-# def main():
-#     with st.sidebar.container():
-#         # Section 1: Apps
-#         with st.expander("Apps"):
-#             st.markdown('<a href="https://famiologydocdetector.streamlit.app/" target="_self">Document Detector</a>', unsafe_allow_html=True)
-#             st.markdown('<a href="https://famiology-smart-fill.streamlit.app/" target="_self">Smart Fill</a>', unsafe_allow_html=True)
-        
-
-# if __name__ == "__main__":
-#     main()
-
 import streamlit as st
 import pdfplumber
 from PIL import Image
@@ -46,8 +14,115 @@ import pandas as pd
 from datetime import datetime
 import plotly.graph_objects as go
 from streamlit_plotly_events import plotly_events
+import base64
+
+page_icon = Image.open(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\favicon.ico")
+st.set_page_config(page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
 
 # from streamlit_option_menu import option_menu
+
+# @st.cache_data(allow_output_mutation=True)
+# def get_base64_image(image_path):
+#     with open(image_path, "rb") as img_file:
+#         return base64.b64encode(img_file.read()).decode()
+
+# image_base64 = get_base64_image("C:/Users/tanis/Documents/TheoremLabs.io/famiologyaccelerators/FamiologyTextLogo.png")
+
+# def add_logo(image_base64):
+#     st.markdown(
+#         """
+#         <style>
+#             [data-testid="stSidebarNav"] {
+#                 background-image: url(data:image/png;base64,{image_base64});
+#                 background-repeat: no-repeat;
+#                 padding-top: 120px;
+#                 background-position: 20px 20px;
+#                 background-size: contain;
+#             }
+
+#         </style>
+#         """,
+#         unsafe_allow_html=True,
+#     )
+
+# add_logo(image_base64)
+
+# def add_logo(logo_path, width, height):
+#     """Read and return a resized logo"""
+#     logo = Image.open(logo_path)
+#     modified_logo = logo.resize((width, height))
+#     return modified_logo
+
+# my_logo = add_logo(logo_path=r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\FamiologyTextLogo.png", width=50, height=60)
+# st.sidebar.image(my_logo)
+
+# @st.cache(allow_output_mutation=True)
+# def get_base64_of_bin_file(png_file):
+#     with open(png_file, "rb") as f:
+#         data = f.read()
+#     return base64.b64encode(data).decode()
+
+# def build_markup_for_logo(
+#     png_file,
+#     background_position="50% 10%",
+#     margin_top="10%",
+#     image_width="60%",
+#     image_height="",
+# ):
+#     binary_string = get_base64_of_bin_file(png_file)
+#     return """
+#             <style>
+#                 [data-testid="stSidebarNav"] {
+#                     background-image: url("data:image/png;base64,%s");
+#                     background-repeat: no-repeat;
+#                     background-position: 20px;
+#                     margin-top: %s;
+#                     background-size: %s %s;
+#                 }
+#             </style>
+#             """ % (
+#         binary_string,
+#         background_position,
+#         margin_top,
+#         image_width,
+#         image_height,
+#     )
+
+# def add_logo(png_file):
+#     logo_markup = build_markup_for_logo(png_file)
+#     st.markdown(
+#         logo_markup,
+#         unsafe_allow_html=True,
+#     )
+
+# add_logo(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\FamiologyTextLogo.png")
+
+# st.markdown("# Home")
+
+file = open(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\FamiologyTextLogo.png", "rb")
+contents = file.read()
+img_str = base64.b64encode(contents).decode("utf-8")
+buffer = io.BytesIO()
+file.close()
+img_data = base64.b64decode(img_str)
+img = Image.open(io.BytesIO(img_data))
+resized_img = img.resize((400, 100))  # x, y
+resized_img.save(buffer, format="PNG")
+img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+
+st.markdown(
+        f"""
+        <style>
+            [data-testid="stSidebarNav"] {{
+                background-image: url('data:image/png;base64,{img_b64}');
+                background-repeat: no-repeat;
+                padding-top: 120px;
+                background-position: 20px 20px;
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
 def documentdetector():
     def img2text(uploaded_file, options):
@@ -125,7 +200,7 @@ def documentdetector():
         # img = Image.open('/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
         # st.set_page_config(page_title="Document Identification")
         
-        # st.set_page_config(page_title='Famiology.docdetector', page_icon='/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
+        # st.set_page_config(page_title='Famiology.docdetector', page_icon=r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\favicon.ico")
         st.header('Famiology Document Detector')
         # st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
         
@@ -213,9 +288,9 @@ def documentdetector():
 
 
 def smartfill():
-    #    page_icon = Image.open("pages/favicon.ico")
-    # st.set_page_config(page_title="Smart Fill", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
-    # logo = Image.open("page/favicon.ico")
+#     page_icon = Image.open(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\favicon.ico")
+#     st.set_page_config(page_title="Smart Fill", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
+#     logo = Image.open(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\favicon.ico")
 
     # Function to extract attributes from PDF document using pdfplumber
     def extract_attributes_from_pdf(file_path, selected_attributes, attribute_mappings):
@@ -797,7 +872,7 @@ def customer_performance_dashboard():
 logo = Image.open("favicon.ico")
 
 # Streamlit UI
-st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
+# st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
 
 st.sidebar.markdown(
     """
@@ -813,11 +888,11 @@ st.sidebar.markdown(
 pg = st.navigation({
     "Apps": [
         # Load pages from functions
-        st.Page(smartfill, title="Smart Fill", default=True, icon=":material/home:", url_path=""),
-        st.Page(documentdetector, title="Document Detector", icon=":material/star_border:", url_path=""),
+        st.Page(smartfill, title="Smart Fill", default=True, url_path=""),
+        st.Page(documentdetector, title="Document Detector", url_path=""),
         ],
     "Dashboards": [
-         st.Page(customer_performance_dashboard, title="Customer Performance Dashboard", icon=":material/hourglass_top:"),
+         st.Page(customer_performance_dashboard, title="Customer Performance Dashboard"),
     #     # You can also load pages from files, as usual
     #     st.Page("movies.py", title="Movie Explorer", icon=":material/movie_filter:"),
     #     st.Page(page3, title="App statuses over time", icon=":material/access_time:"),
@@ -850,10 +925,3 @@ except Exception as e:
 
 #if __name__ == "__main__":
 #     main2()
-
-
-
-
-
-
-
