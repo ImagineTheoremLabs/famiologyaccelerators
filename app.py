@@ -16,7 +16,7 @@ import plotly.graph_objects as go
 from streamlit_plotly_events import plotly_events
 import base64
 
-page_icon = Image.open("favicon.ico")
+page_icon = Image.open(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\favicon.ico")
 st.set_page_config(page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
 
 # from streamlit_option_menu import option_menu
@@ -99,7 +99,7 @@ st.set_page_config(page_icon=page_icon, layout="wide", initial_sidebar_state="ex
 
 # st.markdown("# Home")
 
-file = open("FamiologyTextLogo.png", "rb")
+file = open(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\FamiologyTextLogo.png", "rb")
 contents = file.read()
 img_str = base64.b64encode(contents).decode("utf-8")
 buffer = io.BytesIO()
@@ -869,7 +869,7 @@ def customer_performance_dashboard():
 
 # page_icon = Image.open("page/favicon.ico")
 # st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
-logo = Image.open("favicon.ico")
+logo = Image.open("page/favicon.ico")
 
 # Streamlit UI
 # st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
@@ -925,3 +925,7 @@ except Exception as e:
 
 #if __name__ == "__main__":
 #     main2()
+
+
+
+
