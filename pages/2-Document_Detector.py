@@ -270,6 +270,8 @@ def img2text(uploaded_file, options):
 
 # st.sidebar.info("Hello World")
 
+st.set_page_config(page_title='Famiology.docdetector', page_icon='/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
+
 file = open("FamiologyTextLogo.png", "rb")
 contents = file.read()
 img_str = base64.b64encode(contents).decode("utf-8")
@@ -299,7 +301,7 @@ def main():
     # img = Image.open('/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
     # st.set_page_config(page_title="Document Identification")
     
-    st.set_page_config(page_title='Famiology.docdetector', page_icon='/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
+    # st.set_page_config(page_title='Famiology.docdetector', page_icon='/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
     st.header('Famiology Document Detector')
     # st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
     
