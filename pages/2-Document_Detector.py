@@ -193,6 +193,7 @@ from PIL import Image
 import fitz 
 import io
 import os
+import base64
 from transformers import CLIPProcessor, CLIPModel
 CLIPProcessor.safety_checker = None
 # CLIPProcessor.safety_checker = None
