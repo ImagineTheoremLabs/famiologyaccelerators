@@ -6,7 +6,33 @@ st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", i
 logo = Image.open("pages/favicon.ico")
 
 # Streamlit UI
-st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
+# st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
+
+file = open(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\FamiologyTextLogo.png", "rb")
+contents = file.read()
+img_str = base64.b64encode(contents).decode("utf-8")
+buffer = io.BytesIO()
+file.close()
+img_data = base64.b64decode(img_str)
+img = Image.open(io.BytesIO(img_data))
+resized_img = img.resize((400, 100))  # x, y
+resized_img.save(buffer, format="PNG")
+img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+
+st.markdown(
+        f"""
+        <style>
+            [data-testid="stSidebarNav"] {{
+                background-image: url('data:image/png;base64,{img_b64}');
+                background-repeat: no-repeat;
+                padding-top: 120px;
+                background-position: 20px 20px;
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 st.markdown(
     """
