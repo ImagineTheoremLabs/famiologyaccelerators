@@ -8,7 +8,7 @@ logo = Image.open("pages/favicon.ico")
 # Streamlit UI
 # st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
 
-file = open(r"C:\Users\tanis\Documents\TheoremLabs.io\famiologyaccelerators\FamiologyTextLogo.png", "rb")
+file = open("FamiologyTextLogo.png", "rb")
 contents = file.read()
 img_str = base64.b64encode(contents).decode("utf-8")
 buffer = io.BytesIO()
