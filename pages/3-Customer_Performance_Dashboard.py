@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 from PIL import Image
 from streamlit_plotly_events import plotly_events
 import base64
+import io
 
 
 
