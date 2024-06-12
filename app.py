@@ -6,18 +6,7 @@ st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", i
 logo = Image.open("pages/favicon.ico")
 
 # Streamlit UI
-file = open("FamiologyTextLogo.png", "rb")
-contents = file.read()
-img_str = base64.b64encode(contents).decode("utf-8")
-buffer = io.BytesIO()
-file.close()
-img_data = base64.b64decode(img_str)
-img = Image.open(io.BytesIO(img_data))
-resized_img = img.resize((400, 100))  # x, y
-resized_img.save(buffer, format="PNG")
-img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
-
-# st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
+st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
 
 st.markdown(
     """
