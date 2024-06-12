@@ -15,32 +15,6 @@ import io
 page_icon = Image.open("./pages/favicon.ico")
 st.set_page_config(page_title="Smart Fill", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
 
-# set logo to top of sidebar
-file = open("FamiologyTextLogo.png", "rb")
-contents = file.read()
-img_str = base64.b64encode(contents).decode("utf-8")
-buffer = io.BytesIO()
-file.close()
-img_data = base64.b64decode(img_str)
-img = Image.open(io.BytesIO(img_data))
-resized_img = img.resize((375, 75))  # x, y
-resized_img.save(buffer, format="PNG")
-img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
-st.markdown(
-        f"""
-        <style>
-            [data-testid="stSidebarNav"] {{
-                background-image: url('data:image/png;base64,{img_b64}');
-                background-repeat: no-repeat;
-                padding-top: 120px;
-                background-position: 20px 20px;
-            }}
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
 file_path = "data/FamilyOfficeEntityDataSampleV1.2.xlsx"  # Replace "your_file.xlsx" with the path to your Excel file
 sheetName_clProfile = "Client Profile"
 sheetName_familyMember = "Family Members"
@@ -51,9 +25,6 @@ df_familyMem = pd.read_excel(file_path, sheet_name=sheetName_familyMember)
 now = datetime.now()
 df_clProfile['Date of Birth'] = pd.to_datetime(df_clProfile['Date of Birth'], format='%m/%d/%y')
 df_clProfile['Age'] =((now - df_clProfile['Date of Birth']).dt.days / 365.25).astype(int)
-
-
-
 
 
 df_clProfileFiltered['Date of Birth'] = pd.to_datetime(df_clProfileFiltered['Date of Birth'], format='%m/%d/%y')
@@ -482,3 +453,29 @@ with col_4[2]:
         st.markdown("<h5 style='text-align: center; padding:2vh; font-size:3vh'>Females</h5>", unsafe_allow_html=True)
     
         st.markdown(f"<div style='text-align: center; padding:2vh; font-size:4vh'>{million_representation_female}</div>", unsafe_allow_html=True)
+
+
+# set logo to top of sidebar
+file = open("FamiologyTextLogo.png", "rb")
+contents = file.read()
+img_str = base64.b64encode(contents).decode("utf-8")
+buffer = io.BytesIO()
+file.close()
+img_data = base64.b64decode(img_str)
+img = Image.open(io.BytesIO(img_data))
+resized_img = img.resize((375, 75))  # x, y
+resized_img.save(buffer, format="PNG")
+img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+st.markdown(
+        f"""
+        <style>
+            [data-testid="stSidebarNav"] {{
+                background-image: url('data:image/png;base64,{img_b64}');
+                background-repeat: no-repeat;
+                padding-top: 120px;
+                background-position: 20px 20px;
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
