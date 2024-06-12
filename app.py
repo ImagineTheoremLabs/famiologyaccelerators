@@ -1,5 +1,15 @@
 import streamlit as st
+import pdfplumber
 from PIL import Image
+from pdf2image import convert_from_bytes
+import io
+import fitz 
+import os
+import datetime
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from datetime import datetime
 import base64
 
 page_icon = Image.open("pages/favicon.ico")
