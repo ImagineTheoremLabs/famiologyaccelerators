@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image
+import base64
 
 page_icon = Image.open("pages/favicon.ico")
 st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
