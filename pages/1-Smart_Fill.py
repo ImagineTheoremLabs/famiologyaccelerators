@@ -50,7 +50,7 @@ buffer = io.BytesIO()
 file.close()
 img_data = base64.b64decode(img_str)
 img = Image.open(io.BytesIO(img_data))
-resized_img = img.resize((360, 75))  # x, y
+resized_img = img.resize((300, 60))  # x, y
 resized_img.save(buffer, format="PNG")
 img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
 
