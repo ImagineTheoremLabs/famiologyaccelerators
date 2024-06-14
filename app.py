@@ -36,7 +36,7 @@ st.markdown(
             [data-testid="stSidebarNav"] {{
                 background-image: url('data:image/png;base64,{img_b64}');
                 background-repeat: no-repeat;
-                padding-top: 100px;
+                padding-top: 80px;
                 background-position: 20px 20px;
             }}
         </style>
