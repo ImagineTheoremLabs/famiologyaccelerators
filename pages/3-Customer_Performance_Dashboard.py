@@ -15,6 +15,31 @@ import io
 page_icon = Image.open("./pages/favicon.ico")
 st.set_page_config(page_title="Smart Fill", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
 
+#setting Famiology Logo at top of sidebar
+file = open("FamiologyTextLogo.png", "rb")
+contents = file.read()
+img_str = base64.b64encode(contents).decode("utf-8")
+buffer = io.BytesIO()
+file.close()
+img_data = base64.b64decode(img_str)
+img = Image.open(io.BytesIO(img_data))
+resized_img = img.resize((375, 75))  # x, y
+resized_img.save(buffer, format="PNG")
+img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+st.markdown(
+        f"""
+        <style>
+            [data-testid="stSidebarNav"] {{
+                background-image: url('data:image/png;base64,{img_b64}');
+                background-repeat: no-repeat;
+                padding-top: 120px;
+                background-position: 20px 20px;
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
 file_path = "data/FamilyOfficeEntityDataSampleV1.2.xlsx"  # Replace "your_file.xlsx" with the path to your Excel file
 sheetName_clProfile = "Client Profile"
 sheetName_familyMember = "Family Members"
