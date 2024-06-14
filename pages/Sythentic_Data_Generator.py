@@ -329,6 +329,8 @@ import numpy as np
 import math
 from datetime import datetime, timedelta
 from io import BytesIO
+import base64
+import io
 
 #setting Famiology Logo at top of sidebar
 file = open("FamiologyTextLogo.png", "rb")
