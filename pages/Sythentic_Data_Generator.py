@@ -334,6 +334,8 @@ import io
 from PIL import Image
 
 page_icon = Image.open("pages/favicon.ico")
+st.set_page_config(page_title="Smart Fill", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
+logo = Image.open("pages/favicon.ico")
 
 #setting Famiology Logo at top of sidebar
 file = open("FamiologyTextLogo.png", "rb")
