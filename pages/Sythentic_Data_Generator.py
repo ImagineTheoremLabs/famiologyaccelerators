@@ -331,6 +331,7 @@ from datetime import datetime, timedelta
 from io import BytesIO
 import base64
 import io
+from PIL import Image
 
 #setting Famiology Logo at top of sidebar
 file = open("FamiologyTextLogo.png", "rb")
