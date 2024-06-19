@@ -57,14 +57,14 @@ st.markdown(
         unsafe_allow_html=True,
     )
 
-# HTML and CSS to center the logo and title
+# landing page title
 html = """
 <div style="text-align: center;">
     <h1>Famiology Accelerators</h1>
 </div>
 """
 
-st.image("FamiologyTextLogo.png", width=700)
+st.image("FamiologyTextLogo.png", width=900)
 
 # Display the HTML
 st.markdown(html, unsafe_allow_html=True)
