@@ -57,13 +57,11 @@ st.markdown(
         unsafe_allow_html=True,
     )
 
-html = """
-<div style="text-align: center;">
-    <img src="FamiologyTextLogo.png" alt="Logo" width="700">
-    <h1>Famiology Accelerators</h1>
-</div>
-"""
-st.markdown(html, unsafe_allow_html=True)
+st.markdown("""
+    <div style="text-align: center;">
+        <h1>Famiology Accelerators</h1>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Add a subheading
 st.subheader("Welcome to Famiology, the ultimate Life Management Solution for Generation GenX. ")
