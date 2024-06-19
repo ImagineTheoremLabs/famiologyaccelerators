@@ -75,27 +75,6 @@ st.subheader("Welcome to Famiology, the ultimate Life Management Solution for Ge
 st.write("""
 Our platform offers unparalleled convenience by streamlining financial and life document management. Simplify your life and stay organized effortlessly with Famiology.""")
 
-# Add another subheading
-st.subheader("Features")
-
-# Add some text under the second subheading
-st.write("""
-Here are some of the features of Streamlit:
-- **Simplicity**: Create apps with just a few lines of code.
-- **Speed**: Fast development and deployment.
-- **Interactivity**: Easily add interactivity to your apps.
-- **Customization**: Customize the look and feel of your apps.
-""")
-
-# Add another subheading
-st.subheader("Getting Started")
-
-# Add some text under the third subheading
-st.write("""
-To get started with Streamlit, install it using pip and create a new Python script. You can use various Streamlit commands to add elements to your app, such as titles, text, charts, and more.
-""")
-
-
 # def main():
 #     with st.sidebar.container():
 #         # Section 1: Apps
