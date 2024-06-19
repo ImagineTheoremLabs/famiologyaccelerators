@@ -57,16 +57,17 @@ st.markdown(
         unsafe_allow_html=True,
     )
 
+# title, not using st.title because it wont be centered
 st.markdown("""
     <div style="text-align: center;">
         <h1>Famiology Accelerators</h1>
     </div>
     """, unsafe_allow_html=True)
 
-# Add a subheading
+# subheading
 st.subheader("Welcome to Famiology, the ultimate Life Management Solution for Generation GenX. ")
 
-# Add some introductory text
+# text
 st.write("""
 Our platform offers unparalleled convenience by streamlining financial and life document management. Simplify your life and stay organized effortlessly with Famiology.""")
 
