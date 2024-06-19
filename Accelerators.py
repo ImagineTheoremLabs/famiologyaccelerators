@@ -60,10 +60,11 @@ st.markdown(
 # HTML and CSS to center the logo and title
 html = """
 <div style="text-align: center;">
-    <img src="FamiologyTextLogo.png" alt="Logo" width="700">
     <h1>Famiology Accelerators</h1>
 </div>
 """
+
+st.image("FamiologyTextLogo.png", width=700)
 
 # Display the HTML
 st.markdown(html, unsafe_allow_html=True)
