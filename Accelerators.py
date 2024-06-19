@@ -57,8 +57,13 @@ st.markdown(
         unsafe_allow_html=True,
     )
 
-# Display the logo with st.image and centering
-st.image("FamiologyTextLogo.png", width=700, caption="Famiology Accelerators", use_column_width=True)
+html = """
+<div style="text-align: center;">
+    <img src="FamiologyTextLogo.png" alt="Logo" width="700">
+    <h1>Famiology Accelerators</h1>
+</div>
+"""
+st.markdown(html, unsafe_allow_html=True)
 
 # Add a subheading
 st.subheader("Welcome to Famiology, the ultimate Life Management Solution for Generation GenX. ")
