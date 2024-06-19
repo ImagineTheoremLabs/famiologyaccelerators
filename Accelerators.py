@@ -57,19 +57,26 @@ st.markdown(
         unsafe_allow_html=True,
     )
 
-# title, not using st.title because it wont be centered
-st.markdown("""
-    <div style="text-align: center;">
-        <h1>Famiology Accelerators</h1>
-    </div>
-    """, unsafe_allow_html=True)
+
+# title, subheader, text, not using st.title...etc to make sure all 3 text types are centered
+html = """
+<div style="text-align: center;">
+    <h1>Famiology Accelerators</h1>
+    <h2>Welcome to Famiology, the ultimate Life Management Solution for Generation GenX.</h2>
+    <p>Our platform offers unparalleled convenience by streamlining financial and life document management. Simplify your life and stay organized effortlessly with Famiology.</p>
+</div>
+"""
+# display the HTML content with st.markdown
+st.markdown(html, unsafe_allow_html=True)
 
 # subheading
-st.subheader("Welcome to Famiology, the ultimate Life Management Solution for Generation GenX. ")
-
-# text
+st.subheader("Explore Famiology Accelerators")
+# text under subheading
 st.write("""
-Our platform offers unparalleled convenience by streamlining financial and life document management. Simplify your life and stay organized effortlessly with Famiology.""")
+- **Smart Fill**: Easily upload documents, and let AI automatically fill in your form fields, saving you time and eliminating tedious data entry.
+- **Document Detector**: Upload any document, and our technology instantly identifies and sorts it, making your document handling fast and easy.
+- **Synthetic Data Generator**: Effortlessly create realistic, anonymized data to enhance testing and development without compromising privacy..
+""")
 
 # def main():
 #     with st.sidebar.container():
