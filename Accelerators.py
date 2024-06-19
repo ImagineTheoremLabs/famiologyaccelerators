@@ -57,6 +57,7 @@ st.markdown(
         unsafe_allow_html=True,
     )
 
+
 # title, subheader, text, not using st.title...etc to make sure all 3 text types are centered
 html = """
 <div style="text-align: center;">
