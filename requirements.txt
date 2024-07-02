@@ -12,3 +12,4 @@ streamlit-plotly-events
 pandas 
 openpyxl
 faker 
+xlsxwriter
