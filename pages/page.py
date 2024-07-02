@@ -107,7 +107,7 @@ By following these steps, you'll have a stable IP address for your EC2 instance,
 
 
     st.header("Working Demo")
-    st.video("/Users/atharvabapat/Desktop/BlogPage-Streamlit/Demo-Video.mov")
+    st.video("img/Demo-Video.mp4")
 
 
 if __name__ == "__main__":
