@@ -1,0 +1,40 @@
+{
+  "page_icon": "pages/favicon.ico",
+  
+  "sidebar_logo": "FamiologyTextLogo.png",
+  
+  "title": "Famiology Accelerators",
+  
+  "subheader": "Welcome to Famiology, the ultimate Life Management Solution for Generation GenX.",
+  
+  "description": "Our platform offers unparalleled convenience by streamlining financial and life document management. Simplify your life and stay organized effortlessly with Famiology.",
+  
+  "featured_video": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  
+  "accelerators": [
+    {
+      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/smartfill.jpg",
+      "title": "Accelerator 1",
+      "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
+      "link": "https://example.com"
+    },
+    {
+      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/smartfill.jpg",
+      "title": "Accelerator 2",
+      "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
+      "link": "https://example.com"
+    },
+    {
+      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/smartfill.jpg",
+      "title": "Accelerator 3",
+      "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
+      "link": "https://example.com"
+    },
+    {
+      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/smartfill.jpg",
+      "title": "Accelerator 4",
+      "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
+      "link": "https://example.com"
+    }
+  ]
+}
