@@ -84,20 +84,11 @@ def main():
         <a href='#conclusion'>Conclusion</a>
     </div>
     """, unsafe_allow_html=True)
-
-    # Fixed demo video section
-    st.markdown("""
-        <div class='fixed-demo'>
-            <h2 id='working-demo'>Working Demo</h2>
-            <video controls width='100%'>
-            video_file = open(‘img/Demo-Video.mp4’, ‘rb’)
+     
+    video_file = open(‘img/Demo-Video.mp4’, ‘rb’)
             video_bytes = video_file.read()    
             st.video(video_bytes)
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    """, unsafe_allow_html=True)
-
+         
     st.markdown("<div class='header' id='introduction'>Introduction</div>", unsafe_allow_html=True)
     st.markdown("""
     <div class='markdown-text'>
