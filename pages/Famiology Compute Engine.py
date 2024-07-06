@@ -16,7 +16,7 @@ st.markdown("""
     .navbar {
         display: flex;
         justify-content: center;
-        background-color: #333333;
+        background-color: #000000;
         padding: 10px;
     }
     .navbar a {
