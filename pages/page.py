@@ -4,7 +4,7 @@ import streamlit as st
 st.markdown("""
     <style>
     .main {
-        background-color: #f8f9fa;
+        background-color: #0f0101;
         font-family: 'Arial', sans-serif;
     }
     .title {
