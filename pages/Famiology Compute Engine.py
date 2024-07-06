@@ -85,9 +85,9 @@ def main():
     </div>
     """, unsafe_allow_html=True)
      
-    video_file = open(‘img/Demo-Video.mp4’, ‘rb’)
-            video_bytes = video_file.read()    
-            st.video(video_bytes)
+    video_file = open('img/Demo-Video.mp4', 'rb')
+    video_bytes = video_file.read()    
+    st.video(video_bytes)
          
     st.markdown("<div class='header' id='introduction'>Introduction</div>", unsafe_allow_html=True)
     st.markdown("""
