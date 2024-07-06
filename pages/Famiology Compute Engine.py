@@ -84,7 +84,7 @@ def main():
         <a href='#conclusion'>Conclusion</a>
     </div>
     """, unsafe_allow_html=True)
-     
+    st.subheader("DEMO VIDEO")
     video_file = open('img/Demo-Video.mp4', 'rb')
     video_bytes = video_file.read()    
     st.video(video_bytes)
