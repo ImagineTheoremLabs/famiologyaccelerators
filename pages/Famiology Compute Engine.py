@@ -108,10 +108,10 @@ def main():
     st.markdown("<div class='header' id='features'>Features</div>", unsafe_allow_html=True)
     st.markdown("""
     <div class='markdown-text'>
-    st.subheader(Automated Workflow Management:) Seamlessly automate file preprocessing tasks using Apache Airflow, enabling efficient and consistent handling of large datasets and complex workflows.<br>
-    **Scalable Infrastructure**: Leverage the power of AWS EC2 to scale your preprocessing tasks according to your needs, ensuring robust performance and reliability for any size of data.<br>
-    **Flexible Integration**: Easily integrate with your existing systems and workflows through REST API, allowing for on-the-fly modifications and customizations to meet your specific requirements.<br>
-    **User-Friendly Interface**: Utilize a dedicated Streamlit app to control and monitor your preprocessing workflows, providing an intuitive and accessible interface for managing your tasks.
+    Automated Workflow Management: Seamlessly automate file preprocessing tasks using Apache Airflow, enabling efficient and consistent handling of large datasets and complex workflows.<br>
+    Scalable Infrastructure: Leverage the power of AWS EC2 to scale your preprocessing tasks according to your needs, ensuring robust performance and reliability for any size of data.<br>
+    Flexible Integration: Easily integrate with your existing systems and workflows through REST API, allowing for on-the-fly modifications and customizations to meet your specific requirements.<br>
+    User-Friendly Interface: Utilize a dedicated Streamlit app to control and monitor your preprocessing workflows, providing an intuitive and accessible interface for managing your tasks.
     </div>
     """, unsafe_allow_html=True)
 
