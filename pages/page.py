@@ -55,20 +55,21 @@ st.markdown("""
         border-radius: 10px;
     }
     .fixed-demo {
-        position: sticky;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto;
         width: 80%;
         background-color: #333333;
         border: 1px solid #555555;
-        padding: 10px;
+        padding: 20px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        z-index: 1000;
     }
     .fixed-demo h2 {
         text-align: center;
         color: #ffffff;
+        margin-bottom: 20px;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -91,7 +92,7 @@ def main():
         <div class='fixed-demo'>
             <h2 id='working-demo'>Working Demo</h2>
             <video controls width='100%'>
-                <source src='img/Demo-Video.mp4' type='video/mp4'>
+                <source src='path_to_your_video.mp4' type='video/mp4'>
                 Your browser does not support the video tag.
             </video>
         </div>
