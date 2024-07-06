@@ -31,7 +31,7 @@ st.markdown("""
         z-index: 1;
         max-width: 1200px;
         text-align: left;
-        color: white;
+        # color: white;
         padding: 20px;
         background: rgba(0, 0, 0, 0.6);
         border-radius: 8px;
