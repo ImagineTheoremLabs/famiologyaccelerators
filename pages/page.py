@@ -49,11 +49,10 @@ st.markdown("""
         text-decoration: underline;
     }
     .fixed-demo {
-        position: -webkit-sticky; /* Safari */
         position: sticky;
         top: 80px;
-        margin: auto;
         width: 80%;
+        margin: auto;
         background-color: #fff;
         border: 1px solid #ddd;
         padding: 10px;
