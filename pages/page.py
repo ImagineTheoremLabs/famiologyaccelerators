@@ -1,25 +1,74 @@
 import streamlit as st
 
-def main():
-    st.title("Famiology Compute Engine: Simplify Your File Preprocessing Workflow")
+# Custom CSS
+st.markdown("""
+    <style>
+    .main {
+        background-color: #ffffff;
+        font-family: 'Arial', sans-serif;
+        padding: 0;
+    }
+    .full-screen {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    .full-screen img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+    .content {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        text-align: left;
+        color: white;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 8px;
+    }
+    .sidebar {
+        background-color: #f4f4f4;
+        padding: 20px;
+    }
+    .sidebar a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
+def main():
     st.sidebar.title("Navigation")
     st.sidebar.markdown("""
-    - [Introduction](#introduction)
-    - [Features](#features)
-    - [Step-by-Step Guide](#step-by-step-guide)
-        - [Step 1: Create an EC2 Instance](#step-1-create-an-ec2-instance)
-        - [Step 2: Assign Elastic IP](#step-2-assign-elastic-ip)
-        - [Step 3: Connect to the EC2 Instance](#step-3-connect-to-the-ec2-instance)
-        - [Step 4: Start the Airflow Webserver](#step-4-start-the-airflow-webserver)
-        - [Step 5: Start the Airflow Scheduler](#step-5-start-the-airflow-scheduler)
-        - [Step 6: View and Manage the Active DAG](#step-6-view-and-manage-the-active-dag)
-        - [Step 7: Host the Streamlit App](#step-7-host-the-streamlit-app)
-        - [Step 8: Select and Preprocess Files](#step-8-select-and-preprocess-files)
-        - [Step 9: Verify Preprocessing Results](#step-9-verify-preprocessing-results)
-    - [Conclusion](#conclusion)
-    - [Working Demo](#working-demo)
-    """)
+    <div class="sidebar">
+    <a href="#introduction">Introduction</a><br>
+    <a href="#features">Features</a><br>
+    <a href="#step-by-step-guide">Step-by-Step Guide</a><br>
+    <a href="#conclusion">Conclusion</a><br>
+    <a href="#working-demo">Working Demo</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+        <div class="full-screen">
+            <img src="https://path_to_your_image/sands_of_time.jpg" alt="Sands of time">
+            <div class="content">
+                <h1>Famiology Compute Engine: Simplify Your File Preprocessing Workflow</h1>
+                <p>Streamline and simplify your file preprocessing workflows with the Famiology Compute Engine.</p>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
 
     st.header("Introduction")
     st.write("""
