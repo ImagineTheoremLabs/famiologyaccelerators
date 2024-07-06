@@ -62,10 +62,8 @@ st.markdown("""
         justify-content: center;
         margin: 20px auto;
         width: 80%;
-        background-color: #333333;
         border: 1px solid #555555;
         padding: 20px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     .fixed-demo h2 {
         text-align: center;
