@@ -6,6 +6,7 @@ st.markdown("""
     body {
         background-color: #000000;
         font-family: 'Arial', sans-serif;
+        display: 100%;
     }
     .title {
         text-align: center;
