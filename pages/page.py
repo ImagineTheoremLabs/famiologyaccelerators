@@ -49,15 +49,19 @@ st.markdown("""
         text-decoration: underline;
     }
     .fixed-demo {
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        width: 30%;
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 80px;
+        margin: auto;
+        width: 80%;
         background-color: #fff;
         border: 1px solid #ddd;
         padding: 10px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         z-index: 1000;
+    }
+    .fixed-demo h2 {
+        text-align: center;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -76,7 +80,7 @@ def main():
     # Fixed demo video section
     st.markdown("""
         <div class='fixed-demo'>
-            <h2 class='header' id='working-demo'>Working Demo</h2>
+            <h2 id='working-demo'>Working Demo</h2>
             <video controls width='100%'>
                 <source src='img/Demo-Video.mp4' type='video/mp4'>
                 Your browser does not support the video tag.
