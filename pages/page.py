@@ -34,7 +34,7 @@ st.markdown("""
         border-radius: 10px;
         margin-bottom: 20px;
     }
-    .step-image {
+    .step-section img {
         border-radius: 10px;
     }
     .sidebar-title {
@@ -50,9 +50,10 @@ st.markdown("""
     }
     .fixed-demo {
         position: sticky;
-        top: 80px;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
         width: 80%;
-        margin: auto;
         background-color: #fff;
         border: 1px solid #ddd;
         padding: 10px;
@@ -108,7 +109,7 @@ def main():
 
     with st.expander("Step 1: Create an EC2 Instance"):
         st.markdown("<div class='step-section'><div class='subheader'>Create an EC2 Instance</div>", unsafe_allow_html=True)
-        st.image("img/Step1.png", use_column_width=True, caption="Create an EC2 Instance", class_="step-image")
+        st.image("img/Step1.png", use_column_width=True, caption="Create an EC2 Instance")
         st.markdown("""
         <div class='markdown-text'>
         - Start by creating an EC2 instance on AWS. This instance will host Apache Airflow.<br>
@@ -120,7 +121,7 @@ def main():
 
     with st.expander("Step 2: Assign Elastic IP"):
         st.markdown("<div class='step-section'><div class='subheader'>Assign Elastic IP</div>", unsafe_allow_html=True)
-        st.image("img/Step2.png", use_column_width=True, caption="Assign Elastic IP", class_="step-image")
+        st.image("img/Step2.png", use_column_width=True, caption="Assign Elastic IP")
         st.markdown("""
         <div class='markdown-text'>
         - By assigning an Elastic IP, you stabilize the instance's IP address, making it easier to access the APIs necessary for integrating Streamlit.<br>
@@ -131,7 +132,7 @@ def main():
 
     with st.expander("Step 3: Connect to the EC2 Instance and Set Up Directories and Libraries"):
         st.markdown("<div class='step-section'><div class='subheader'>Connect to the EC2 Instance and Set Up Directories and Libraries</div>", unsafe_allow_html=True)
-        st.image("img/Step3.png", use_column_width=True, caption="Connect to the EC2 Instance and Set Up Directories and Libraries", class_="step-image")
+        st.image("img/Step3.png", use_column_width=True, caption="Connect to the EC2 Instance and Set Up Directories and Libraries")
         st.markdown("""
         <div class='markdown-text'>
         - Once the Elastic IP address is assigned, start the EC2 instance and connect to it via the "Connect" button, which opens a terminal.<br>
@@ -144,7 +145,7 @@ def main():
 
     with st.expander("Step 4: Start the Airflow Webserver"):
         st.markdown("<div class='step-section'><div class='subheader'>Start the Airflow Webserver</div>", unsafe_allow_html=True)
-        st.image("img/Step4.png", use_column_width=True, caption="Start the Airflow Webserver", class_="step-image")
+        st.image("img/Step4.png", use_column_width=True, caption="Start the Airflow Webserver")
         st.markdown("""
         <div class='markdown-text'>
         - Start the Airflow webserver by running the command airflow webserver &. This launches the webserver on the host, listening on port 8080, as shown in the screenshot.<br>
@@ -155,7 +156,7 @@ def main():
 
     with st.expander("Step 5: Start the Airflow Scheduler"):
         st.markdown("<div class='step-section'><div class='subheader'>Start the Airflow Scheduler</div>", unsafe_allow_html=True)
-        st.image("img/Step5.png", use_column_width=True, caption="Start the Airflow Scheduler", class_="step-image")
+        st.image("img/Step5.png", use_column_width=True, caption="Start the Airflow Scheduler")
         st.markdown("""
         <div class='markdown-text'>
         - Once the webserver is running, start the Airflow scheduler using the command airflow scheduler.<br>
@@ -167,7 +168,7 @@ def main():
 
     with st.expander("Step 6: View and Manage the Active DAG"):
         st.markdown("<div class='step-section'><div class='subheader'>View and Manage the Active DAG</div>", unsafe_allow_html=True)
-        st.image("img/Step6.png", use_column_width=True, caption="View and Manage the Active DAG", class_="step-image")
+        st.image("img/Step6.png", use_column_width=True, caption="View and Manage the Active DAG")
         st.markdown("""
         <div class='markdown-text'>
         - With the Apache Airflow platform now visible, you can see the active DAG, “compute_engine_dag.py”.<br>
@@ -180,7 +181,7 @@ def main():
 
     with st.expander("Step 7: Host the Streamlit App"):
         st.markdown("<div class='step-section'><div class='subheader'>Host the Streamlit App</div>", unsafe_allow_html=True)
-        st.image("img/Step7.png", use_column_width=True, caption="Host the Streamlit App", class_="step-image")
+        st.image("img/Step7.png", use_column_width=True, caption="Host the Streamlit App")
         st.markdown("""
         <div class='markdown-text'>
         - This is the Streamlit app that is hosted over the Streamlit community cloud and in the backend the buttons are connected with RestAPI provided by the Apache Airflow.
@@ -190,7 +191,7 @@ def main():
 
     with st.expander("Step 8: Select and Preprocess Files"):
         st.markdown("<div class='step-section'><div class='subheader'>Select and Preprocess Files</div>", unsafe_allow_html=True)
-        st.image("img/Step8.png", use_column_width=True, caption="Select and Preprocess Files", class_="step-image")
+        st.image("img/Step8.png", use_column_width=True, caption="Select and Preprocess Files")
         st.markdown("""
         <div class='markdown-text'>
         - Now when we click on DAG we see our Compute Engine DAG that is currently active.
@@ -200,7 +201,7 @@ def main():
 
     with st.expander("Step 9: Verify Preprocessing Results on Apache Airflow"):
         st.markdown("<div class='step-section'><div class='subheader'>Verify Preprocessing Results on Apache Airflow</div>", unsafe_allow_html=True)
-        st.image("img/Step9.png", use_column_width=True, caption="Verify Preprocessing Results on Apache Airflow", class_="step-image")
+        st.image("img/Step9.png", use_column_width=True, caption="Verify Preprocessing Results on Apache Airflow")
         st.markdown("""
         <div class='markdown-text'>
         - When you select the files to preprocess and click the "Generate Result" button, an API call is made to the DAG present on Apache Airflow.<br>
