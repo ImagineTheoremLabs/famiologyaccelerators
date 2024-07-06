@@ -3,33 +3,50 @@ import streamlit as st
 # Custom CSS for styling
 st.markdown("""
     <style>
-    .main {
-        background-color: #0f0101;
+    body {
+        background-color: #000000;
         font-family: 'Arial', sans-serif;
     }
     .title {
         text-align: center;
-        color: #333;
+        color: #ffffff;
         font-size: 2.5em;
         margin-bottom: 20px;
     }
+    .navbar {
+        display: flex;
+        justify-content: center;
+        background-color: #333333;
+        padding: 10px;
+    }
+    .navbar a {
+        color: #ffffff;
+        text-decoration: none;
+        padding: 14px 20px;
+        display: inline-block;
+        text-align: center;
+    }
+    .navbar a:hover {
+        background-color: #575757;
+        color: white;
+    }
     .header {
-        color: #333;
+        color: #ffffff;
         font-size: 2em;
         margin-top: 20px;
     }
     .subheader {
-        color: #555;
+        color: #ffffff;
         font-size: 1.5em;
         margin-top: 20px;
     }
     .markdown-text {
-        color: #666;
+        color: #cccccc;
         font-size: 1.1em;
         line-height: 1.6em;
     }
     .step-section {
-        background-color: #fff;
+        background-color: #333333;
         padding: 20px;
         border-radius: 10px;
         margin-bottom: 20px;
@@ -37,44 +54,36 @@ st.markdown("""
     .step-section img {
         border-radius: 10px;
     }
-    .sidebar-title {
-        font-size: 1.5em;
-        margin-bottom: 10px;
-    }
-    .sidebar-link {
-        color: #007bff;
-        text-decoration: none;
-    }
-    .sidebar-link:hover {
-        text-decoration: underline;
-    }
     .fixed-demo {
         position: sticky;
         top: 20px;
         left: 50%;
         transform: translateX(-50%);
         width: 80%;
-        background-color: #fff;
-        border: 1px solid #ddd;
+        background-color: #333333;
+        border: 1px solid #555555;
         padding: 10px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         z-index: 1000;
     }
     .fixed-demo h2 {
         text-align: center;
+        color: #ffffff;
     }
     </style>
     """, unsafe_allow_html=True)
 
 def main():
     st.markdown("<div class='title'>Famiology Compute Engine: Simplify Your File Preprocessing Workflow</div>", unsafe_allow_html=True)
-
-    st.sidebar.markdown("<div class='sidebar-title'>Navigation</div>", unsafe_allow_html=True)
-    st.sidebar.markdown("""
-    <a href="#introduction" class="sidebar-link">Introduction</a><br>
-    <a href="#features" class="sidebar-link">Features</a><br>
-    <a href="#step-by-step-guide" class="sidebar-link">Step-by-Step Guide</a><br>
-    <a href="#conclusion" class="sidebar-link">Conclusion</a><br>
+    
+    # Navigation bar
+    st.markdown("""
+    <div class='navbar'>
+        <a href='#introduction'>Introduction</a>
+        <a href='#features'>Features</a>
+        <a href='#step-by-step-guide'>Step-by-Step Guide</a>
+        <a href='#conclusion'>Conclusion</a>
+    </div>
     """, unsafe_allow_html=True)
 
     # Fixed demo video section
