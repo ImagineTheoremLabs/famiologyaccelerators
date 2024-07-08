@@ -1,3 +1,6 @@
+To have the description of the first step open by default when the page is opened, you need to set the `expanded` parameter of the first `st.expander` to `True`. Here's the modified code:
+
+```python
 import streamlit as st
 
 # Custom CSS for styling
@@ -108,7 +111,7 @@ def main():
 
     st.markdown("<div class='header' id='step-by-step-guide'>Step-by-Step Guide</div>", unsafe_allow_html=True)
 
-    with st.expander("Step 1: Create an EC2 Instance"):
+    with st.expander("Step 1: Create an EC2 Instance", expanded=True):
         st.markdown("<div class='step-section'><div class='subheader'>Create an EC2 Instance</div>", unsafe_allow_html=True)
         st.image("img/Step1.png", use_column_width=True, caption="Create an EC2 Instance")
         st.markdown("""
@@ -177,7 +180,9 @@ def main():
         - The interface shows that the DAG has successfully run 41 times, with 2 failures.<br>
         - Additionally, you have the capability to schedule the DAG runs, allowing for automated and efficient processing the data.
         </div>
-        </div>
+        </
+
+div>
         """, unsafe_allow_html=True)
 
     with st.expander("Step 7: Host the Streamlit App"):
@@ -222,3 +227,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
