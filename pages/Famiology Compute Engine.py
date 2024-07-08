@@ -47,7 +47,7 @@ st.markdown("""
         line-height: 1.6em;
     }
     .step-section {
-        background-color: #ffffff;
+        background-color: #000000;
         padding: 10px;
         border-radius: 5px;
         margin-bottom: 10px;
