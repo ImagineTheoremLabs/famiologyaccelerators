@@ -47,10 +47,10 @@ st.markdown("""
         line-height: 1.6em;
     }
     .step-section {
-        background-color: #333333;
-        padding: 20px;
-        border-radius: 10px;
-        margin-bottom: 20px;
+        background-color: #ffffff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
     }
     .step-section img {
         border-radius: 10px;
@@ -73,7 +73,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 def main():
-    st.markdown("<div class='title'>Famiology Compute Engine: Simplify Your File Preprocessing Workflow</div>", unsafe_allow_html=True)
+    st.markdown("<div class='title'>Famiology Compute Engine: Simplify File Preprocessing Workflow</div>", unsafe_allow_html=True)
     
     # Navigation bar
     st.markdown("""
@@ -92,17 +92,17 @@ def main():
     st.markdown("<div class='header' id='introduction'>Introduction</div>", unsafe_allow_html=True)
     st.markdown("""
     <div class='markdown-text'>
-    The Famiology Compute Engine is designed to streamline and simplify your file preprocessing workflows. Whether you're dealing with large datasets, complex transformations, or repetitive tasks, this engine provides the tools you need to efficiently prepare your data for analysis.
+    The Famiology Compute Engine is designed to streamline and simplify file preprocessing workflows. Whether you're dealing with large datasets, complex transformations, or repetitive tasks, this engine provides the tools you need to efficiently prepare your data for analysis.
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("<div class='header' id='features'>Features</div>", unsafe_allow_html=True)
     st.markdown("""
     <div class='markdown-text'>
-    Automated Workflow Management: Seamlessly automate file preprocessing tasks using Apache Airflow, enabling efficient and consistent handling of large datasets and complex workflows.<br>
-    Scalable Infrastructure: Leverage the power of AWS EC2 to scale your preprocessing tasks according to your needs, ensuring robust performance and reliability for any size of data.<br>
-    Flexible Integration: Easily integrate with your existing systems and workflows through REST API, allowing for on-the-fly modifications and customizations to meet your specific requirements.<br>
-    User-Friendly Interface: Utilize a dedicated Streamlit app to control and monitor your preprocessing workflows, providing an intuitive and accessible interface for managing your tasks.
+    Automated Workflow Management: Seamlessly automate preprocessing tasks using Apache Airflow, enabling efficient and consistent handling of large datasets and complex workflows.<br>
+    Scalable Infrastructure: Leverage the power of AWS EC2 to scale preprocessing tasks according to specific needs, ensuring robust performance and reliability for any data size.<br>
+    Flexible Integration: Easily integrate with existing systems and workflows through REST API, enabling on-the-fly modifications and customizations to meet specific requirements.<br>
+    User-Friendly Interface: Utilize a dedicated Streamlit app to control and monitor preprocessing workflows, providing an intuitive and accessible interface for managing tasks.
     </div>
     """, unsafe_allow_html=True)
 
@@ -115,7 +115,7 @@ def main():
         <div class='markdown-text'>
         - Start by creating an EC2 instance on AWS. This instance will host Apache Airflow.<br>
         - Assign Elastic IP:<br>
-        Note that the IPv4 address and Public IPv4 DNS of an EC2 instance change when it is stopped and restarted. To maintain a constant IP address, create a new Elastic IP and assign it to your instance. This ensures that the IP address remains the same, even after restarting the instance.
+        Note that the IPv4 address and Public IPv4 DNS of an EC2 instance change when it is stopped and restarted. To maintain a constant IP address, create a new Elastic IP and assign it to an instance. This ensures that the IP address remains the same, even after restarting the instance.
         </div>
         </div>
         """, unsafe_allow_html=True)
@@ -138,8 +138,8 @@ def main():
         <div class='markdown-text'>
         - Once the Elastic IP address is assigned, start the EC2 instance and connect to it via the "Connect" button, which opens a terminal.<br>
         - In this terminal, create the necessary directories and install all required files and libraries, including Apache Airflow.<br>
-        - Activate the Airflow environment and navigate to the working directory containing your files, such as Excel sheets, webserver.py, airflow.db, and airflow.cfg.<br>
-        - The dags folder holds all the active DAGs for Airflow. This setup ensures that your instance is running with a stable IP and all necessary configurations for managing workflows with Airflow.
+        - Activate the Airflow environment and navigate to the working directory containing files, such as Excel sheets, webserver.py, airflow.db, and airflow.cfg.<br>
+        - The dags folder holds all the active DAGs for Airflow. This setup ensures that the instance is running with a stable IP and all necessary configurations for managing workflows with Airflow.
         </div>
         </div>
         """, unsafe_allow_html=True)
@@ -150,7 +150,7 @@ def main():
         st.markdown("""
         <div class='markdown-text'>
         - Start the Airflow webserver by running the command airflow webserver &. This launches the webserver on the host, listening on port 8080, as shown in the screenshot.<br>
-        - This allows you to access the Airflow UI and manage your workflows through the web interface.
+        - This allows to access the Airflow UI and manage the workflows through the web interface.
         </div>
         </div>
         """, unsafe_allow_html=True)
@@ -175,7 +175,7 @@ def main():
         - With the Apache Airflow platform now visible, you can see the active DAG, “compute_engine_dag.py”.<br>
         - This DAG contains all the code needed to preprocess the Excel sheets located on the same instance.<br>
         - The interface shows that the DAG has successfully run 41 times, with 2 failures.<br>
-        - Additionally, you have the capability to schedule the DAG runs, allowing for automated and efficient processing of your data.
+        - Additionally, you have the capability to schedule the DAG runs, allowing for automated and efficient processing the data.
         </div>
         </div>
         """, unsafe_allow_html=True)
@@ -216,7 +216,7 @@ def main():
     st.image("img/Conclusion.png", use_column_width=True, caption="Conclusion")
     st.markdown("""
     <div class='markdown-text'>
-    - The Famiology Compute Engine is your go-to solution for simplifying file preprocessing workflows. With its powerful features and ease of use, you'll be able to focus more on analyzing your data and less on preparing it.
+    - The Famiology Compute Engine is go-to solution for simplifying file preprocessing workflows. With its powerful features and ease of use, you'll be able to focus more on analyzing your data and less on preparing it.
     </div>
     """, unsafe_allow_html=True)
 
