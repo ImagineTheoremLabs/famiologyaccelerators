@@ -1,6 +1,3 @@
-To have the description of the first step open by default when the page is opened, you need to set the `expanded` parameter of the first `st.expander` to `True`. Here's the modified code:
-
-```python
 import streamlit as st
 
 # Custom CSS for styling
