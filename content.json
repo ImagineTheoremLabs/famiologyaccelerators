@@ -1,0 +1,39 @@
+{
+  "page_icon": "pages/favicon.ico",
+  
+  "sidebar_logo": "FamiologyTextLogo.png",
+  
+  "title": "Famiology Accelerators",
+  
+  "subheader": "Welcome to Famiology, the ultimate Life Management Solution for Generation GenX.",
+  
+  "description": "Our platform offers unparalleled convenience by streamlining financial and life document management. Simplify your life and stay organized effortlessly with Famiology.",
+  
+  "featured_video": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/WhatsApp Video 2024-07-04 at 7.55.59 PM.mp4",
+  "accelerators": [
+    {
+      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/304F0B29-27F6-4B93-9A61-9A968A040CA9.webp",
+      "title": "Smart Fill",
+      "description": "This intelligent feature automatically populates relevant data fields based on the document you upload. Say goodbye to manual data entry and let Smart Fill do the heavy lifting for you.",
+      "link": "https://example.com"
+    },
+    {
+      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/3EE6D3F3-D8F9-4F52-B327-3429298170EF.webp",
+      "title": "Document Detector",
+      "description": "Empower your document management process with Smart Document Recognition. This advanced feature swiftly identifies the type of document you upload, making document handling effortless and efficient.",
+      "link": "https://example.com"
+    },
+    {
+      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/F0A041F8-4434-42B2-B677-25F1959F4DFA.webp",
+      "title": "Customer Performance Dashbord",
+      "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
+      "link": "https://example.com"
+    },
+    {
+      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/86BC5F6D-76DB-4BEE-9202-441402279102.webp",
+      "title": "Synthetic Data Generator",
+      "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
+      "link": "https://example.com"
+    }
+  ]
+}
