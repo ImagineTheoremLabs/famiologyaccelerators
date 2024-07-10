@@ -1,0 +1,20 @@
+{
+    "sections": [
+        {
+            "title": "Smart Fill: Automatic Data Prepopulation",
+            "content": "This intelligent feature automatically populates relevant data fields based on the document you upload. Say goodbye to manual data entry and let Smart Fill do the heavy lifting for you."
+        },
+        {
+            "title": "How It Works?",
+            "content": "1. Upload Your Document: Simply upload your document using the provided file upload button.\n2. Smart Analysis: Our system analyzes the document to identify key data points such as names, addresses, dates, and more. Further we can configure it with reference to domain.\n3. Automatic Prepopulation: Once the analysis is complete, Smart Fill intelligently fills in the corresponding fields in your form, saving you time and effort.\n4. Review and Edit: You always have the final say. Review the pre populated data, make any necessary edits, and proceed with confidence."
+        },
+        {
+            "title": "What problem it solves?",
+            "content": "Client Experience: Busy or unmotivated clients expect automated pre-filled information sourced from AI or backend operations.\nEfficiency: \nCut down on manual data entry and reduce processing time."
+        },
+        {
+            "title": "Value",
+            "content": "The inherent value proposition of Smart Fill for users resides in its capacity to expedite and optimize data entry workflows through the automated population of pertinent fields, leveraging document uploads as the primary data source."
+        }
+    ]
+}

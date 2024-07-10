@@ -9,30 +9,29 @@
   
   "description": "Our platform offers unparalleled convenience by streamlining financial and life document management. Simplify your life and stay organized effortlessly with Famiology.",
   
-  "featured_video": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-  
+  "featured_video": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/WhatsApp Video 2024-07-04 at 7.55.59 PM.mp4",
   "accelerators": [
     {
       "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/smartfill.jpg",
-      "title": "Accelerator 1",
+      "title": "Smart Fill",
+      "description": "This intelligent feature automatically populates relevant data fields based on the document you upload. Say goodbye to manual data entry and let Smart Fill do the heavy lifting for you.",
+      "link": "https://example.com"
+    },
+    {
+      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/smartfill.jpg",
+      "title": "Document Detector",
+      "description": "Empower your document management process with Smart Document Recognition. This advanced feature swiftly identifies the type of document you upload, making document handling effortless and efficient.",
+      "link": "https://example.com"
+    },
+    {
+      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/smartfill.jpg",
+      "title": "Customer Performance Dashbord",
       "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
       "link": "https://example.com"
     },
     {
       "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/smartfill.jpg",
-      "title": "Accelerator 2",
-      "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
-      "link": "https://example.com"
-    },
-    {
-      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/smartfill.jpg",
-      "title": "Accelerator 3",
-      "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
-      "link": "https://example.com"
-    },
-    {
-      "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/smartfill.jpg",
-      "title": "Accelerator 4",
+      "title": "Synthetic Data Generator",
       "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
       "link": "https://example.com"
     }

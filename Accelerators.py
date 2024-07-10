@@ -3,7 +3,8 @@ import base64
 from PIL import Image
 import io
 import json
-import streamlit.components.v1 as components
+import os
+import streamlit.components.v1 as components  # Ensure this import is included
 
 # Load JSON content
 with open("content.json", "r") as file:
@@ -78,21 +79,13 @@ if title or subheader or description:
 # Central section with video or image
 featured_video = content.get('featured_video')
 if featured_video:
-    central_html = f"""
-    <div style="text-align: center; margin: 30px 0; padding: 20px;">
-        <div style="background-color: #2C3E50; padding: 30px; border-radius: 15px; max-width: 800px; margin: 0 auto;">
-            <h3 style="color: white; margin-bottom: 20px; font-size: 24px;">Featured Video</h3>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
-                <iframe src="{featured_video}" 
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-                        allowfullscreen="" 
-                        allow="autoplay; encrypted-media">
-                </iframe>
-            </div>
-        </div>
-    </div>
-    """
-    st.markdown(central_html, unsafe_allow_html=True)
+    st.markdown('<h2 style="text-align: center;">Featured Video</h2>', unsafe_allow_html=True)  # Center the heading
+    if os.path.isfile(featured_video):
+        # If it's a local file, use st.video() directly
+        st.video(featured_video)
+    else:
+        # If it's a URL, use st.video() directly
+        st.video(featured_video)
 
 # Load accelerator data from JSON content
 accelerators = content.get("accelerators", [])
@@ -101,7 +94,7 @@ accelerators = content.get("accelerators", [])
 if accelerators:
     num_accelerators = len(accelerators)
     rows = (num_accelerators + 3) // 4  # Calculate number of rows needed
-    base_height = 500  # Base height for one row
+    base_height = 550  # Base height for one row
     additional_height_per_row = 500  # Additional height for each extra row
     total_height = base_height + (rows - 1) * additional_height_per_row
 
@@ -181,6 +174,3 @@ if accelerators:
 
     accelerator_html += '</div>'
     components.html(accelerator_html, height=total_height)
-
-# Check if CSS is being applied (you can remove this line if not needed)
-# st.write("<style>.accelerator-card { border: 2px solid red; }</style>", unsafe_allow_html=True)
