@@ -57,6 +57,12 @@ section[data-testid="stSidebar"] {
 # Apply CSS styles
 st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
+def load_about_info(json_path):
+    with open(json_path, 'r') as file:
+        about_info = json.load(file)
+    return about_info
+
+
 # Load and display the sidebar logo
 if os.path.exists(LOGO_PATH):
     with open(LOGO_PATH, "rb") as file:
