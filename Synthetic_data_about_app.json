@@ -1,20 +1,20 @@
 {
     "sections": [
         {
-            "title": "Smart Document Recognition: Instantly Identify Uploaded Documents",
-            "content": "Empower your document management process with Smart Document Recognition. This advanced feature swiftly identifies the type of document you upload, making document handling effortless and efficient."
+            "title": "Synthetic Data Generation: Create Tailored Test Data",
+            "content": "Enhance your testing and development processes with our Synthetic Data Generator. This powerful tool allows you to create customized data sets according to specific test cases or from scratch by defining column names."
         },
         {
             "title": "How It Works",
-            "content": "Upload Your Document: Select the document you wish to process using the provided file upload button. \n\n Intelligent Analysis: Our system employs cutting-edge technology to analyze the documents structure, layout, and content. \n\n Automatic Identification: Based on the analysis, Smart Document Recognition accurately identifies the document type, whether its an identification document, real estate document, 401k document or any other document format. \n\n Streamlined Processing: With the document type identified, our platform can seamlessly route it to the appropriate workflow or apply predefined actions, saving you valuable time and effort."
+            "content": "Specify Test Case: Define the test case for which you need synthetic data, ensuring relevance and precision currently it handles the test case for family data that has clientID and relation between the family members. \n\n Dynamic Data Creation: Our system leverages advanced algorithms to generate data that mirrors real-world scenarios based on your specifications. \n\n Custom Data Generation: If you prefer, you can manually input column names and generate data from scratch, giving you complete control over the data structure."
         },
         {
             "title": "What Problem it Solves",
-            "content": "Efficiency: Instantly recognize document types without manual intervention. \n\n Accuracy: Ensure accurate processing and categorization of documents. \n\n Productivity: Automate document handling workflows for smoother operations."
+            "content": "Customization: Generate data tailored to your specific needs without manual data entry. \n\n Realism: Produce data resembling real-world scenarios for more accurate testing. \n\n Flexibility: Create diverse data sets, whether based on predefined test cases or custom requirements."
         },
         {
             "title": "Value",
-            "content": "eVaults are smart and can support automation of client interactions as well as parallel internal ops process. Saves ops time, cleaner data, nudges for clients as well as for internal staff."
+            "content": "Efficiency: Save time on data preparation, allowing your team to focus on analysis and development. \n\n Accuracy: Ensure your tests are backed by realistic data, improving the reliability of your results. \n\n Productivity: Streamline your data generation process, boosting overall productivity and innovation."
         }
     ]
 }
