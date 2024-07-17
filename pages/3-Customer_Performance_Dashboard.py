@@ -1,481 +1,244 @@
 import datetime
 import numpy as np
 import streamlit as st
-import matplotlib.pyplot as plt
 import pandas as pd
 from datetime import datetime
 import plotly.graph_objects as go
+import plotly.express as px
 from PIL import Image
-from streamlit_plotly_events import plotly_events
 import base64
 import io
+import os
 
+# Set the path to your logo image here
+LOGO_PATH = "Picture1.png"  # Update this path as needed
 
-
+# Load the page icon
 page_icon = Image.open("./pages/favicon.ico")
-st.set_page_config(page_title="Smart Fill", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
 
-#setting Famiology Logo at top of sidebar
-file = open("FamiologyTextLogo.png", "rb")
-contents = file.read()
-img_str = base64.b64encode(contents).decode("utf-8")
-buffer = io.BytesIO()
-file.close()
-img_data = base64.b64decode(img_str)
-img = Image.open(io.BytesIO(img_data))
-resized_img = img.resize((300, 60))  # x, y
-resized_img.save(buffer, format="PNG")
-img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
-st.markdown(
+# Set page configuration
+st.set_page_config(page_title="Customer Performance Dashboard", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
+
+# Improved CSS styles
+css = """
+/* Global Styles */
+body {
+    color: #ffffff;
+    background-color: #0e1117;
+}
+
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background-color: #1a1a1a;
+    padding: 2rem 0;
+    border-right: 1px solid #333;
+}
+
+/* Main content area */
+.main .block-container {
+    max-width: 1200px;
+    padding: 2rem;
+}
+
+/* Text styles */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Card-like containers */
+.stMetric, div[data-testid="stMetricValue"] {
+    background-color: #262730;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stMetric:hover, div[data-testid="stMetricValue"]:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Button styling */
+.stButton > button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.stButton > button:hover {
+    background-color: #45a049;
+}
+
+/* Selectbox styling */
+.stSelectbox {
+    background-color: #262730;
+    border-radius: 5px;
+    padding: 0.25rem;
+}
+
+/* Graph container */
+[data-testid="stPlotlyChart"] {
+    background-color: #262730;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+"""
+
+# Apply CSS styles
+st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+
+# Load and display the sidebar logo
+if os.path.exists(LOGO_PATH):
+    with open(LOGO_PATH, "rb") as file:
+        contents = file.read()
+    img_str = base64.b64encode(contents).decode("utf-8")
+    
+    # Apply the sidebar logo style
+    st.markdown(
         f"""
         <style>
             [data-testid="stSidebarNav"] {{
-                background-image: url('data:image/png;base64,{img_b64}');
+                background-image: url('data:image/png;base64,{img_str}');
                 background-repeat: no-repeat;
-                padding-top: 80px;
                 background-position: 20px 20px;
+                background-size: auto 160px;
+                padding-top: 200px;
+                background-color: rgba(0, 0, 0, 0);
             }}
         </style>
         """,
         unsafe_allow_html=True,
     )
 
-file_path = "data/FamilyOfficeEntityDataSampleV1.2.xlsx"  # Replace "your_file.xlsx" with the path to your Excel file
-sheetName_clProfile = "Client Profile"
-sheetName_familyMember = "Family Members"
-df_clProfile = pd.read_excel(file_path, sheet_name=sheetName_clProfile)
-df_clProfileFiltered = pd.read_excel(file_path, sheet_name=sheetName_clProfile)
-df_familyMem = pd.read_excel(file_path, sheet_name=sheetName_familyMember)
+# Load data
+file_path = "data/FamilyOfficeEntityDataSampleV1.2.xlsx"
+df_clProfile = pd.read_excel(file_path, sheet_name="Client Profile")
+df_familyMem = pd.read_excel(file_path, sheet_name="Family Members")
 
+# Print column names for debugging
+print("Columns in df_clProfile:", df_clProfile.columns)
+
+# Data preprocessing
 now = datetime.now()
 df_clProfile['Date of Birth'] = pd.to_datetime(df_clProfile['Date of Birth'], format='%m/%d/%y')
-df_clProfile['Age'] =((now - df_clProfile['Date of Birth']).dt.days / 365.25).astype(int)
+df_clProfile['Age'] = ((now - df_clProfile['Date of Birth']).dt.days / 365.25).astype(int)
+df_clProfile['Net Worth'] = df_clProfile['Net Worth'].replace({'\$': '', ',': ''}, regex=True).astype(float)
 
+# Set the maximum age value
+max_age_value = 52
 
-df_clProfileFiltered['Date of Birth'] = pd.to_datetime(df_clProfileFiltered['Date of Birth'], format='%m/%d/%y')
-df_clProfileFiltered['Age'] =((now - df_clProfileFiltered['Date of Birth']).dt.days / 365.25).astype(int)
+# Ensure the calculated ages do not exceed the maximum age value
+df_clProfile['Age'] = df_clProfile['Age'].apply(lambda x: x if x <= max_age_value else max_age_value)
 
+# Dashboard title
+st.title("Customer Performance Dashboard")
 
-col_1_widths = (20, 10)
-col_1_gap = 'medium'
+# Filters
+col1, col2, col3 = st.columns(3)
 
-# black_theme = """
-# <style>
-# body {
-#     background-color: #000000;
-#     color: #FFFFFF;
-# }
-# </style>
-# """
+with col1:
+    selected_state = st.selectbox("Select State", ["ALL STATES"] + sorted(df_clProfile['State'].unique()))
 
-# # Display the custom CSS styles using st.markdown
-# st.markdown(black_theme, unsafe_allow_html=True)
+with col2:
+    age_range = st.slider("Age Range", min_value=df_clProfile['Age'].min(), max_value=max_age_value, value=(df_clProfile['Age'].min(), max_age_value))
 
+with col3:
+    status_options = ["ALL"] + list(df_clProfile['Status'].unique())
+    selected_status = st.selectbox("Customer Status", status_options)
 
+# Filter data based on selections
+filtered_df = df_clProfile.copy()
+if selected_state != "ALL STATES":
+    filtered_df = filtered_df[filtered_df["State"] == selected_state]
+filtered_df = filtered_df[(filtered_df['Age'] >= age_range[0]) & (filtered_df['Age'] <= age_range[1])]
+if selected_status != "ALL":
+    filtered_df = filtered_df[filtered_df["Status"] == selected_status]
 
-# Create the first set of columns
-col_1 = st.columns(col_1_widths, gap=col_1_gap)
+# Key Metrics
+col1, col2, col3 = st.columns(3)
 
+with col1:
+    total_revenue = filtered_df['Net Worth'].sum()
+    st.metric("Total Revenue", f"${total_revenue:,.0f}")
 
-# Content for the first set of columns
-with col_1[0]:
-    # st.image("img/FamiologyTextLogo.png")
+with col2:
+    total_customers = len(filtered_df)
+    st.metric("Total Customers", f"{total_customers:,}")
 
-    st.markdown('<h4 style="font-size: 36px;">CUSTOMER PERFORMANCE DASHBOARD</h4>', unsafe_allow_html=True)
+with col3:
+    avg_age = filtered_df['Age'].mean()
+    st.metric("Average Age", f"{avg_age:.1f}")
 
+# Charts
+col1, col2, col3 = st.columns(3)
 
-with col_1[1]:
-    #listOfStates = df_clProfile["State"]
-    stateFilterList = sorted(pd.unique(df_clProfile['State']))
-    stateFilterList.insert(0, "ALL STATES")
-
-    st.markdown("<h4 style='text-align: center; padding: 0px; margin:0px'>State Filter</h4>", unsafe_allow_html=True)
-
-    selectBox_col = st.columns(1)
-    with selectBox_col[0]:
-        selectedState = st.selectbox("", options=stateFilterList, label_visibility='hidden')
-        if selectedState is not "ALL STATES":
-            df_clProfileFiltered = df_clProfileFiltered[df_clProfileFiltered["State"] == selectedState]
-
-col_2_widths = (8, 8, 8, 12)
-col_2_gap = 'medium'
-
-
-
-# Create the second set of columns
-col_2 = st.columns(col_2_widths, gap=col_2_gap)
-
-
-
-with col_2[0]:
-    # calculate the value from the xlsx
-    column_name = "Net Worth"
-
-    df_clProfileFiltered[column_name] = df_clProfileFiltered[column_name].replace({'\$': '', ',': ''}, regex=True).astype(int)
-
-    # Calculate the sum of all values in the column
-    total_sum = df_clProfileFiltered[column_name].sum()
-    million_representation = "$ {:.2f}M".format(total_sum / 1_000_000)
-
-    # st.metric(label="## Total Revenue", value=million_representation)
-    # Show total revenue
-    st.markdown("<h4 style='text-align: center;'>Total Revenue</h4>", unsafe_allow_html=True)
-
-    metric_col =  st.columns(1)
-
-    with metric_col[0]:
-        st.markdown(f"<div style='text-align: center; font-size:4vh'>{million_representation}</div>", unsafe_allow_html=True)
-
-
-
-
-with col_2[1]:
-    num_rows = df_clProfileFiltered.shape[0]
-    # st.metric(label="**Total Customers**", value = num_rows)
-
-    st.markdown("<h4 style='text-align: center;'>Total Customers</h4>", unsafe_allow_html=True)
-
-    totalCust_col =  st.columns(1)
-
-
-    with totalCust_col[0]:
-        st.markdown(f"<div style='text-align: center;font-size:4vh'>{num_rows}</div>", unsafe_allow_html=True)
-
-with col_2[2]:
-
+with col1:
+    # Revenue by Age Group
+    df_sorted = filtered_df.copy()
+    df_sorted['AgeGroup'] = pd.cut(df_sorted['Age'], bins=[0, 40, 50, 60, 100], labels=['<40', '40-50', '50-60', '60+'])
+    revenue_by_age = df_sorted.groupby('AgeGroup')['Net Worth'].sum().reset_index()
     
-    # Calculate the average age
-    average_age = df_clProfileFiltered['Age'].mean()
-    # st.metric(label="**Customer Avg. age**", value="{:.2f}".format(average_age))
-
-    st.markdown("<h4 style='text-align: center;'>Customer Avg. age</h4>", unsafe_allow_html=True)
-
-    age_col =  st.columns(1)
-
-    with age_col[0]:
-        st.markdown(f"<div style='text-align: center;font-size:4vh'>{int(average_age)}</div>", unsafe_allow_html=True)
-
-with col_2[3]:
-    # st.markdown("Year Slicer")
-    st.write("<h4 style='text-align: center;'>Age</h4>", unsafe_allow_html=True)
-
-    lower_year = -1
-    upper_year = 199
-    
-    maxAge = df_clProfileFiltered['Age'].max()
-    minAge = df_clProfileFiltered['Age'].min()
-
-    year_list = [str(year) for year in range(minAge, maxAge)]  # Example year range
-
-
-    reversed_yearlist = year_list[::-1]
-
-
-
-    if 'upper_year' not in st.session_state:
-        st.session_state.upper_year = None
-    if 'lower_year' not in st.session_state:
-        st.session_state.lower_year = None
-
-
-    if st.session_state.upper_year != None:
-        print("Upper Year changed", st.session_state.upper_year)
-        index_of_value = year_list.index(st.session_state.upper_year)  # Get the index of the value
-        sublist_from_middle = year_list[:index_of_value -1]
-        year_list = sublist_from_middle
-
-
-    
-
-    year_lower, year_upper = st.columns(2)
-
-    with year_lower:
-        print("Running Lower again")
-        lower_year = st.selectbox("Select lower range of the year:", year_list, label_visibility="collapsed", key="lowerYearKey")
-        # if st.session_state.lower_year != lower_year:
-        #     st.session_state.lower_year = lower_year
-
-    # if st.session_state.lower_year != None:
-        index_of_value = year_list.index(lower_year)  # Get the index of the value
-        sublist_from_middle = year_list[index_of_value + 1:]
-        reversed_yearlist = sublist_from_middle[::-1]
-
-    with year_upper:
-        print("setting upperLayer List")
-        upper_year = st.selectbox("Select upper range of the year:", reversed_yearlist, label_visibility="collapsed",key="upperYearKey")
-
-        index_of_value = year_list.index(upper_year)  # Get the index of the value
-        sublist_from_middle = year_list[:index_of_value -1]
-        year_list = sublist_from_middle
-
-    # print("upperYear is thissss ", upper_year)
-    # if st.session_state.upper_year != upper_year:
-    #     st.session_state.upper_year = upper_year
-    #     print("running again")
-            # st.rerun()
-
-
-        # if st.session_state.upper_year != upper_year:
-        #     print("Upper Year changed", upper_year)
-        #     index_of_value = year_list.index(upper_year)  # Get the index of the value
-        #     sublist_from_middle = year_list[:index_of_value -1]
-        #     year_list = sublist_from_middle
-
-        #     st.session_state.upper_year = upper_year
-
-
-            # print(int(upper_year))
-            # if upper_year is not 199:
-            #     print("Selected lower Layer", upper_year)
-            #     index_of_value = year_list.index(upper_year)  # Get the index of the value
-            #     sublist_from_middle = year_list[:index_of_value -1]
-            #     year_list = sublist_from_middle
-            #     with year_lower:
-            #         lower_year = st.selectbox("Select lower range of the year:", year_list, label_visibility="collapsed")
-
-
-
-    lower_year = int(lower_year)
-    upper_year = int(upper_year)
-
-    df_clProfileFiltered = df_clProfileFiltered[(df_clProfileFiltered['Age'] >= lower_year) & (df_clProfileFiltered['Age'] <= upper_year)]
-
-
-
-
-
-col_3_widths = (10, 10, 10)
-col_3_gap = 'medium'
-
-col_3 = st.columns(col_3_widths, gap=col_3_gap)
-
-
-
-
-with col_3[0]:
-        
-        merged_df = pd.merge(df_clProfileFiltered, df_familyMem, on="ClientID", how="left")
-        column_name = "Net Worth"
-
-        child_records = merged_df[merged_df["Relationship"] == "Child"]
-        totalRevenue = df_clProfileFiltered[column_name].sum()
-        total_sum_wt_chld = child_records[column_name].sum()
-
-
-
-        percentageForChld = total_sum_wt_chld * 100/totalRevenue
-
-        
-
-        # st.write("<div style='text-align: center; font-weight: bold;'>Revenue from customers with children</div>", unsafe_allow_html=True)
-        st.write("<h4 style='text-align: center; font-weight: bold;'>Revenue from customers with children</h4>", unsafe_allow_html=True)
-        labels = 'With child', 'without child'
-        sizes = [percentageForChld, 100 - percentageForChld]
-        explode = (0, 0.1, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
-
-        fig1, ax1 = plt.subplots(figsize=(6, 6))
-        ax1.set_facecolor("white")  # RGB values as a tuple
-        patches, texts, autotexts = ax1.pie(sizes, labels=labels, autopct='%0.1f%%',
-                                    shadow=False, startangle=90)
-
-        # Set the color of labels to white
-        for text in texts:
-            text.set_color('white')
-            text.set_fontsize(18)  # Adjust the font size here
-
-
-        # Set the color of autopct labels to white
-        for autotext in autotexts:
-            autotext.set_color('white')
-            autotext.set_fontsize(12)  # Adjust the font size here
-
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
-        fig1.patch.set_alpha(0)
-
-        st.pyplot(fig1)
-
-
-with col_3[1]:
-
-    # st.write("<div style='text-align: center; font-weight: bold;'>Total Revenue by Age group</div>", unsafe_allow_html=True)
-    st.write("<h4 style='text-align: center; font-weight: bold;'>Total Revenue by Age group</h4>", unsafe_allow_html=True)
-
-    df_sorted = df_clProfileFiltered.sort_values(by='Age')
-    df_sorted['Net Worth'] = df_sorted['Net Worth'].replace({'\$': '', ',': ''}, regex=True).astype(int)
-
-    # maxAge = df_clProfileFiltered['Age'].max()
-    # minAge = df_clProfileFiltered['Age'].min()
-
-    # year_list = [str(year) for year in range(minAge, maxAge)]  # Example year range
-
-    # # Determine the number of bins based on the length of the numbers list
-    # if len(year_list) > 30:
-    #     num_bins = 4
-    # elif len(year_list) > 20:
-    #     num_bins = 3
-    # else:
-    #     num_bins = 2
-
-    # # Use numpy's histogram function to compute the histogram
-    # hist, bins = np.histogram(year_list, bins=num_bins)
-
-    # print("bins", bins)
-
-    bins = [25, 40, 50, 60]
-    labels_ages = ['25-40', '40-50', '50-60']
-
-
-    df_sorted['AgeGroup'] = pd.cut(df_sorted['Age'], bins=bins, labels=labels_ages, right=False)
-
-    revenue_by_age_group = df_sorted.groupby('AgeGroup')['Net Worth'].sum().tolist()
-
-    print("revenue_by_age_group", revenue_by_age_group)
-
-
-    fig1, ax1 = plt.subplots(figsize=(1.5,1.5))
-    # ax1.set_facecolor("white")  # RGB values as a tuple
-
-    patches, texts, autotexts = ax1.pie(revenue_by_age_group, labels=labels_ages, autopct='%0.1f%%', 
-            shadow=False, startangle=90)
-    
-    for text in texts:
-        text.set_color('white')
-        text.set_fontsize(6)  # Adjust the font size her
-
-    for autotext in autotexts:
-        autotext.set_color('white')
-        autotext.set_fontsize(6)  # Adjust the font size her
-
-    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
-
-    colors = ['green', 'orange', 'red']
-
-    fig1.patch.set_alpha(0)
-
-    st.pyplot(fig1)
-
-    
-
-with col_3[2]:
-    # st.write("<div style='text-align: center; font-weight: bold;'>Total Revenue by customer status</div>", unsafe_allow_html=True)
-    st.write("<h4 style='text-align: center; font-weight: bold;'>Total Revenue by customer status</h4>", unsafe_allow_html=True)
-    uniqueValues = df_clProfileFiltered['Status'].unique()
-    groupedPerStatus = df_clProfileFiltered.groupby('Status')['Net Worth'].sum()
-    indexByStatus = groupedPerStatus.index.tolist()
-    listByStatus = groupedPerStatus.tolist()
-
-    fig, ax = plt.subplots()
-    # ax.set_facecolor('rgb(14, 17, 23)')  # Set the background color
-    ax.set_facecolor((14/255, 17/255, 23/255))  # RGB values as a tuple
-    # ax.set_facecolor("white")  # RGB values as a tuple
-
-
-
-    df = pd.DataFrame({"Net Worth in Millions": listByStatus}, index= indexByStatus )
-    fig = df.plot.barh(ax= ax, stacked=False).figure
-
-
-    ax.xaxis.label.set_color('white')
-    ax.yaxis.label.set_color('white')
-    ax.tick_params(axis='x', colors='white')
-    ax.tick_params(axis='y', colors='white')
-
-    ax.set_title('Total Revenue by Customer Status', color='white')
-    ax.set_xlabel('Revenue (in millions)', color='white')
-    ax.set_ylabel('Customer Status', color='white')
-
-    fig.patch.set_alpha(0)
-    st.pyplot(fig)
-
-
-
-col_4_widths = (15, 5, 25)
-col_4_gap = 'medium'
-
-# Create the second set of columns
-col_4 = st.columns(col_4_widths, gap=col_4_gap)
-
-with col_4[0]:
-    df_clProfileFiltered['Net Worth'] = df_clProfileFiltered['Net Worth'].replace({'\$': '', ',': ''}, regex=True).astype(int)
-    df_sorted_netWorth = df_clProfileFiltered.sort_values(by='Net Worth')
-    
-    top_five_individuals = df_sorted_netWorth.head()
-
-    top_five_individuals["Net Worth"] = top_five_individuals["Net Worth"]/1_000_000
-
-    # st.write("<div style='text-align: center; font-weight: bold;'>Top 5 Customers by Revenue</div>", unsafe_allow_html=True)
-    st.write("<h4 style='text-align: center; font-weight: bold;'>Top 5 Customers by Revenue</h4>", unsafe_allow_html=True)
-
-    fig, ax = plt.subplots()
-    # ax.set_facecolor('rgb(14, 17, 23)')  # Set the background color
-    ax.set_facecolor((14/255, 17/255, 23/255))  # RGB values as a tuple
-    # ax.set_facecolor("white")  # RGB values as a tuple
-
-    df = pd.DataFrame({"Net Worth in Millions": top_five_individuals["Net Worth"].to_list()}, index=top_five_individuals["First Name"])
-
-    fig = df.plot.barh(ax = ax, stacked=True).figure
-
-    ax.xaxis.label.set_color('white')
-    ax.yaxis.label.set_color('white')
-    ax.tick_params(axis='x', colors='white')
-    ax.tick_params(axis='y', colors='white')
-
-    ax.set_title('Top 5 Customers by revenue', color='white')
-    ax.set_xlabel('Revenue (in millions)', color='white')
-    ax.set_ylabel('First Name', color='white')
-
-    fig.patch.set_alpha(0)
-
-    st.pyplot(fig)
-    
-
-
-with col_4[2]:
-
-    
-    # st.write("<div style='text-align: center; font-weight: bold;'>Revenue by Gender</div>", unsafe_allow_html=True)
-    st.write("<h4 style='text-align: center; font-weight: bold;'>Revenue by Gender</h4>", unsafe_allow_html=True)
-    col_gender_width = (10, 10)
-    col_gender_gap = 'medium'
-
-    genderRev_upper = st.columns(col_gender_width, gap=col_gender_gap)
-    with genderRev_upper[0]:
-        st.markdown("<br>", unsafe_allow_html=True)
-        
-    
-    with genderRev_upper[1]:
-        st.markdown("<br>", unsafe_allow_html=True)
-
-    
-    genderRev = st.columns(col_gender_width, gap=col_gender_gap)
-
-    column_name = "Net Worth"
-
-    df_clProfileFiltered[column_name] = df_clProfileFiltered[column_name].replace({'\$': '', ',': ''}, regex=True).astype(int)
-
-    with genderRev[0]:
-
-        MaleIndividuals = df_clProfileFiltered[df_clProfileFiltered["Gender"] == "M"]
-        
-        # Calculate the sum of all values in the column
-        total_sum_male = MaleIndividuals[column_name].sum()
-        million_representation_male = "$ {:.2f}M".format(total_sum_male / 1_000_000)
-
-        # st.metric(label="**Males**", value=million_representation_male)
-
-        st.markdown("<h5 style='text-align: center;padding:2vh; font-size:3vh'>Males</h5>", unsafe_allow_html=True)
-        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:4vh'>{million_representation_male}</div>", unsafe_allow_html=True)
-    
-
-    with genderRev[1]:
-        FemaleIndividuals = df_clProfileFiltered[df_clProfileFiltered["Gender"] == "F"]
-        total_sum_female = FemaleIndividuals[column_name].sum()
-        million_representation_female = "$ {:.2f}M".format(total_sum_female / 1_000_000)
-
-
-        st.markdown("<h5 style='text-align: center; padding:2vh; font-size:3vh'>Females</h5>", unsafe_allow_html=True)
-    
-        st.markdown(f"<div style='text-align: center; padding:2vh; font-size:4vh'>{million_representation_female}</div>", unsafe_allow_html=True)
-
+    fig = px.pie(revenue_by_age, values='Net Worth', names='AgeGroup', title='Revenue by Age Group')
+    fig.update_traces(textposition='inside', textinfo='percent+label')
+    fig.update_layout(
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(color='white')
+    )
+    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+
+with col2:
+    # Revenue by Customer Status
+    revenue_by_status = filtered_df.groupby('Status')['Net Worth'].sum().reset_index()
+    fig = px.bar(revenue_by_status, x='Status', y='Net Worth', title='Revenue by Customer Status')
+    fig.update_layout(
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(color='white'),
+        yaxis=dict(
+            title='Net Worth (Millions)',
+            range=[0, revenue_by_status['Net Worth'].max() * 1.1]  # Set y-axis range
+        )
+    )
+    fig.update_traces(marker_color='lightblue')
+    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+
+with col3:
+    # Revenue from customers with children
+    merged_df = pd.merge(filtered_df, df_familyMem, on="ClientID", how="left")
+    child_records = merged_df[merged_df["Relationship"] == "Child"]
+    total_revenue = filtered_df['Net Worth'].sum()
+    revenue_with_children = child_records['Net Worth'].sum()
+    revenue_without_children = total_revenue - revenue_with_children
+
+    fig = px.pie(
+        values=[revenue_with_children, revenue_without_children],
+        names=['With Children', 'Without Children'],
+        title='Revenue from Customers with Children'
+    )
+    fig.update_traces(textposition='inside', textinfo='percent+label')
+    fig.update_layout(
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(color='white')
+    )
+    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+
+# Top 5 Customers
+st.subheader("Top 5 Customers by Revenue")
+top_5_customers = filtered_df.nlargest(5, 'Net Worth')[['ClientID', 'Net Worth', 'Age', 'Status']]
+st.table(top_5_customers.style.format({'Net Worth': '${:,.0f}'}))
+
+# Add some interactivity
+if st.button("Refresh Data"):
+    st.experimental_rerun()
+
+# Footer
+st.markdown("---")
+st.markdown("Dashboard created with Streamlit")

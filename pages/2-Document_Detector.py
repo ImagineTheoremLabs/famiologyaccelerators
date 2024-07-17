@@ -196,7 +196,98 @@ import os
 import base64
 import json
 from transformers import CLIPProcessor, CLIPModel
-CLIPProcessor.safety_checker = None
+
+# Set the path to your logo image here
+LOGO_PATH = "Picture1.png"  # Update this path as needed
+
+# Load the page icon
+page_icon = Image.open("pages/favicon.ico")
+
+# Set page configuration
+st.set_page_config(page_title="Document Detector", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
+
+# Hardcoded CSS styles
+css = """
+/* Sidebar width */
+section[data-testid="stSidebar"] {
+    width: 338px !important;
+}
+
+/* Main content area */
+.main .block-container {
+    max-width: 1200px;
+    padding-top: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Text colors */
+.stText, .stMarkdown, .stTitle, .stSubheader {
+    color: white;
+}
+
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+    font-weight: bold;
+}
+
+/* Sidebar logo */
+[data-testid="stSidebarNav"] {
+    background-repeat: no-repeat;
+    padding-top: 80px;
+    background-position: 20px 20px;
+}
+"""
+
+# Apply CSS styles
+st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+
+# Load and display the sidebar logo
+if os.path.exists(LOGO_PATH):
+    with open(LOGO_PATH, "rb") as file:
+        contents = file.read()
+    img_str = base64.b64encode(contents).decode("utf-8")
+    img = Image.open(io.BytesIO(base64.b64decode(img_str)))
+    
+    # Calculate new dimensions while maintaining aspect ratio
+    max_width = 550
+    max_height = 220
+    img.thumbnail((max_width, max_height))
+    
+    buffer = io.BytesIO()
+    img.save(buffer, format="PNG")
+    img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+
+    # Apply the sidebar logo style
+    st.markdown(
+        f"""
+        <style>
+            [data-testid="stSidebarNav"] {{
+                background-image: url('data:image/png;base64,{img_b64}');
+                background-repeat: no-repeat;
+                background-position: 20px 20px;
+                background-size: auto 160px;
+                padding-top: 140px;
+                background-color: rgba(0, 0, 0, 0);
+            }}
+            [data-testid="stSidebarNav"]::before {{
+                content: "";
+                display: block;
+                height: 140px;
+            }}
+            [data-testid="stSidebarNav"] > ul {{
+                padding-top: 0px;
+            }}
+            .css-17lntkn {{
+                padding-top: 0px !important;
+            }}
+            .css-1544g2n {{
+                padding-top: 0rem;
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
 # Function to load About page information from JSON file
 def load_about_info(json_path):
@@ -253,43 +344,18 @@ def img2text(uploaded_file, options):
         if option in options:
             st.write(f"{option} - {flat_probs[i]}")
 
-# Set page configuration
-st.set_page_config(page_title='Famiology.docdetector', page_icon='/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
-
-# Load and display logo
-file = open("FamiologyTextLogo.png", "rb")
-contents = file.read()
-img_str = base64.b64encode(contents).decode("utf-8")
-buffer = io.BytesIO()
-file.close()
-img_data = base64.b64decode(img_str)
-img = Image.open(io.BytesIO(img_data))
-resized_img = img.resize((300, 60))
-resized_img.save(buffer, format="PNG")
-img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
-
-st.markdown(
-    f"""
-    <style>
-        [data-testid="stSidebarNav"] {{
-            background-image: url('data:image/png;base64,{img_b64}');
-            background-repeat: no-repeat;
-            padding-top: 80px;
-            background-position: 20px 20px;
-        }}
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
 def main():
-    st.header('Famiology Document Detector')
-    tabs = st.tabs(["Smartfill", "About"])
+    st.title("Famiology Document Detector")
 
-    with tabs[0]:
+    tabs = st.tabs(["About", "Document Detector"])
+
+    with tabs[1]:
         with st.sidebar:
             st.header('Configuration')
-            options = st.multiselect(label='Choose the Parameter to classify', options=["Passport", "Driver License", "Green Card", "401K-statement", "Last-will-and-testament", "life-insurance", "W2-form", "f8889_HSA", "1040-Tax-Return"])
+            options = st.multiselect(
+                label='Choose the Parameter to classify', 
+                options=["Passport", "Driver License", "Green Card", "401K-statement", "Last-will-and-testament", "life-insurance", "W2-form", "f8889_HSA", "1040-Tax-Return"]
+            )
 
         uploaded_file = st.file_uploader("Choose a file to upload", type=['png', 'jpeg', 'jpg', 'pdf'])
         if uploaded_file is not None:
@@ -303,7 +369,7 @@ def main():
                 if st.button("Submit"):
                     img2text(uploaded_file, options)
 
-    with tabs[1]:
+    with tabs[0]:
         st.header("About")
         about_info = load_about_info("Document_Detector_about_info.json")
         for section in about_info["sections"]:

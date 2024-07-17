@@ -1,39 +1,43 @@
 {
   "page_icon": "pages/favicon.ico",
+
+  "sidebar_logo": "Picture1.png",
   
-  "sidebar_logo": "FamiologyTextLogo.png",
+  "title": "TheoremLabs",
   
-  "title": "Famiology Accelerators",
+  "subheader": "Welcome to Theoremlabs, the Fintech innovation hub leveraging AI, Data, Cloud, and Web 3",
   
-  "subheader": "Welcome to Famiology, the ultimate Life Management Solution for Generation GenX.",
+  "description": "At Theoremlabs, we are a hybrid of management consulting, build & experimentation labs, dedicated to the Fintech industry. We harness the power of AI, Data, Cloud, and cutting-edge Web 3 technologies to create innovative and impactful solutions.",
   
-  "description": "Our platform offers unparalleled convenience by streamlining financial and life document management. Simplify your life and stay organized effortlessly with Famiology.",
-  
-  "featured_video": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/WhatsApp Video 2024-07-04 at 7.55.59 PM.mp4",
+  "featured_video":{
+    "embed_code": "<iframe src=\"https://player.vimeo.com/video/982597653?h=c5489e8c98\" width=\"1280\" height=\"720\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" allowfullscreen></iframe>",
+    "width": 1280,
+    "height": 720
+  },
   "accelerators": [
     {
       "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/304F0B29-27F6-4B93-9A61-9A968A040CA9.webp",
       "title": "Smart Fill",
       "description": "This intelligent feature automatically populates relevant data fields based on the document you upload. Say goodbye to manual data entry and let Smart Fill do the heavy lifting for you.",
-      "link": "https://example.com"
+      "link": "http://localhost:8501/Smart_Fill"
     },
     {
       "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/3EE6D3F3-D8F9-4F52-B327-3429298170EF.webp",
       "title": "Document Detector",
       "description": "Empower your document management process with Smart Document Recognition. This advanced feature swiftly identifies the type of document you upload, making document handling effortless and efficient.",
-      "link": "https://example.com"
+      "link": "http://localhost:8501/Document_Detector"
     },
     {
       "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/F0A041F8-4434-42B2-B677-25F1959F4DFA.webp",
       "title": "Customer Performance Dashbord",
       "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
-      "link": "https://example.com"
+      "link": "http://localhost:8501/Customer_Performance_Dashboard"
     },
     {
       "image": "/Users/sahilwikhe/famiologyaccelerators copy/accelerator_icon/86BC5F6D-76DB-4BEE-9202-441402279102.webp",
       "title": "Synthetic Data Generator",
       "description": "Our document management accelerator ensures that all your important files are securely stored and easily accessible at any time.",
-      "link": "https://example.com"
+      "link": "http://localhost:8501/Sythentic_Data_Generator"
     }
   ]
 }
