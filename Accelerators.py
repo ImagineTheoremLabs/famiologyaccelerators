@@ -4,7 +4,7 @@ from PIL import Image
 import io
 import json
 import os
-import streamlit.components.v1 as components  # Ensure this import is included
+import streamlit.components.v1 as components
 
 # Load JSON content
 with open("content.json", "r") as file:
@@ -44,16 +44,41 @@ if file_path:
     file.close()
     img_data = base64.b64decode(img_str)
     img = Image.open(io.BytesIO(img_data))
-    resized_img = img.resize((300, 60))  # x, y
-    resized_img.save(buffer, format="PNG")
+    
+    # Calculate new dimensions while maintaining aspect ratio
+    max_width = 550
+    max_height = 220
+    img.thumbnail((max_width, max_height))
+    
+    img.save(buffer, format="PNG")
     img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
 
-    # Apply the sidebar logo style
+    # Apply the sidebar logo style with reduced spacing
     st.markdown(
         f"""
         <style>
             [data-testid="stSidebarNav"] {{
                 background-image: url('data:image/png;base64,{img_b64}');
+                background-repeat: no-repeat;
+                background-position: 20px 20px;
+                background-size: auto 160px;
+                padding-top: 140px;  /* Reduced from 180px */
+                background-color: rgba(0, 0, 0, 0);
+            }}
+            [data-testid="stSidebarNav"]::before {{
+                content: "";
+                display: block;
+                height: 140px;  /* Reduced from 180px */
+            }}
+            [data-testid="stSidebarNav"] > ul {{
+                padding-top: 0px;
+            }}
+            .css-17lntkn {{  /* This targets the sidebar title */
+                padding-top: 0px !important;  /* Removed padding */
+            }}
+            /* Adjust other sidebar elements if needed */
+            .css-1544g2n {{  /* This targets the sidebar content */
+                padding-top: 0rem;
             }}
         </style>
         """,
@@ -79,13 +104,20 @@ if title or subheader or description:
 # Central section with video or image
 featured_video = content.get('featured_video')
 if featured_video:
-    st.markdown('<h2 style="text-align: center;">Featured Video</h2>', unsafe_allow_html=True)  # Center the heading
-    if os.path.isfile(featured_video):
-        # If it's a local file, use st.video() directly
-        st.video(featured_video)
-    else:
-        # If it's a URL, use st.video() directly
-        st.video(featured_video)
+    st.markdown('<h2 style="text-align: center;">Art of Possible Lab</h2>', unsafe_allow_html=True)
+    
+    # Get video embed details from JSON
+    video_embed = featured_video.get('embed_code', '')
+    video_width = featured_video.get('width', 1280)
+    video_height = featured_video.get('height', 720)
+    
+    # Embed video
+    video_container = f'''
+    <div style="display: flex; justify-content: center;">
+        {video_embed}
+    </div>
+    '''
+    st.markdown(video_container, unsafe_allow_html=True)
 
 # Load accelerator data from JSON content
 accelerators = content.get("accelerators", [])
@@ -94,14 +126,17 @@ accelerators = content.get("accelerators", [])
 if accelerators:
     num_accelerators = len(accelerators)
     rows = (num_accelerators + 3) // 4  # Calculate number of rows needed
-    base_height = 550  # Base height for one row
+    base_height = 570  # Base height for one row
     additional_height_per_row = 500  # Additional height for each extra row
     total_height = base_height + (rows - 1) * additional_height_per_row
 
-    # Featured accelerators section
-    st.subheader("Explore Famiology Accelerators")
+    # Add spacing before the accelerator section
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
 
-    # Create HTML for accelerator cards with a grid layout and hover effects
+    # Featured accelerators section
+    st.subheader("Explore Theoremlabs Accelerators")
+
+    # Create HTML for accelerator cards with a grid layout, preserved image aspect ratios, and bottom-aligned buttons
     accelerator_html = '''
     <style>
     .accelerator-grid {
@@ -115,43 +150,59 @@ if accelerators:
         border-radius: 10px;
         padding: 20px;
         transition: all 0.3s ease;
-        background-color: rgba(26, 32, 44, 0.4);  /* Darker, more transparent background */
+        background-color: rgba(26, 32, 44, 0.4);
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);  /* Adds a slight blur effect */
+        backdrop-filter: blur(5px);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     }
     .accelerator-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        background-color: rgba(26, 32, 44, 0.6);  /* Slightly more opaque on hover */
+        background-color: rgba(26, 32, 44, 0.6);
     }
-    .accelerator-card img {
+    .accelerator-card .image-container {
         width: 100%;
+        padding-top: 75%; /* 4:3 Aspect Ratio */
+        position: relative;
+        overflow: hidden;
         border-radius: 10px;
+    }
+    .accelerator-card .image-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         transition: all 0.3s ease;
     }
-    .accelerator-card:hover img {
+    .accelerator-card:hover .image-container img {
         transform: scale(1.05);
     }
     .accelerator-card h3 {
         margin-top: 15px;
         font-weight: bold;
-        color: #3498db;
+        color: white;
     }
     .accelerator-card p {
         color: #ecf0f1;
+        flex-grow: 1;
     }
     .accelerator-card a {
         display: inline-block;
-        margin-top: 10px;
+        margin-top: auto; /* Push button to bottom */
         padding: 5px 10px;
-        background-color: #3498db;
         color: white;
+        font-weight: bold;
         text-decoration: none;
         border-radius: 5px;
         transition: background-color 0.3s ease;
+        background-color: #333;
     }
     .accelerator-card a:hover {
-        background-color: #2980b9;
+        background-color: #555;
     }
     </style>
     <div class="accelerator-grid">
@@ -165,7 +216,9 @@ if accelerators:
             img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
             accelerator_html += f"""
             <div class="accelerator-card">
-                <img src="data:image/png;base64,{img_b64}" alt="{acc['title']}">
+                <div class="image-container">
+                    <img src="data:image/png;base64,{img_b64}" alt="{acc['title']}">
+                </div>
                 <h3>{acc['title']}</h3>
                 <p>{acc['description']}</p>
                 <a href="{acc['link']}" target="_blank">Learn More</a>
