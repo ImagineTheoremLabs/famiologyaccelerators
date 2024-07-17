@@ -73,7 +73,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 def main():
-    st.markdown("<div class='title'>Famiology Compute Engine: Simplify File Preprocessing Workflow</div>", unsafe_allow_html=True)
+    st.markdown("<div class='title'>Airflow Compute Engine: Simplify File Preprocessing Workflow</div>", unsafe_allow_html=True)
     
     # Navigation bar
     st.markdown("""
