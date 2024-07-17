@@ -11,6 +11,7 @@ import base64
 import io
 from PIL import Image
 import os
+import json
 
 # Set the path to your logo image here
 LOGO_PATH = "img/Theoremlabs_logo.png"  # Update this path as needed
