@@ -198,10 +198,10 @@ def main():
 
     
     st.title('Synthetic Data Generator')
-    tabs = st.tabs(["About", "Document Detector"])
+    tabs = st.tabs(["About", "Synthetic Data Generator"])
     with tabs[0]:
         st.header("About")
-        about_info = load_about_info("Document_Detector_about_info.json")
+        about_info = load_about_info("Synthetic_data_about_app.json")
         for section in about_info["sections"]:
             with st.expander(section["title"], expanded=True):
                 st.write(section["content"])
