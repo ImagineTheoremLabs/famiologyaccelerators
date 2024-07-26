@@ -157,7 +157,7 @@ def img2text(uploaded_file, options):
             st.write(f"{option} - {flat_probs[i]}")
 
 def main():
-    st.title("Famiology Document Detector")
+    st.title("Document Detector")
 
     tabs = st.tabs(["About", "Document Detector"])
 

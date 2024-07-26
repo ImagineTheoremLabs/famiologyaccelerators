@@ -136,7 +136,7 @@ def load_about_info(json_path):
     return about_info
 
 def main():
-    st.title("Smart Fill - Famiology.io")
+    st.title("Smart Fill")
 
     tabs = st.tabs(["About", "Smartfill"])
 

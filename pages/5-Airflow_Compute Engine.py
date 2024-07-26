@@ -92,7 +92,7 @@ def main():
     st.markdown("<div class='header' id='introduction'>Introduction</div>", unsafe_allow_html=True)
     st.markdown("""
     <div class='markdown-text'>
-    The Famiology Compute Engine is designed to streamline and simplify file preprocessing workflows. Whether you're dealing with large datasets, complex transformations, or repetitive tasks, this engine provides the tools you need to efficiently prepare your data for analysis.
+    The Airflow Compute Engine is designed to streamline and simplify file preprocessing workflows. Whether you're dealing with large datasets, complex transformations, or repetitive tasks, this engine provides the tools you need to efficiently prepare your data for analysis.
     </div>
     """, unsafe_allow_html=True)
 
@@ -218,7 +218,7 @@ div>
     st.image("img/Conclusion.png", use_column_width=True, caption="Conclusion")
     st.markdown("""
     <div class='markdown-text'>
-    - The Famiology Compute Engine is go-to solution for simplifying file preprocessing workflows. With its powerful features and ease of use, you'll be able to focus more on analyzing your data and less on preparing it.
+    - The Airflow Compute Engine is go-to solution for simplifying file preprocessing workflows. With its powerful features and ease of use, you'll be able to focus more on analyzing your data and less on preparing it.
     </div>
     """, unsafe_allow_html=True)
 
