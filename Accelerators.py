@@ -23,9 +23,9 @@ page_icon = load_image(content.get("page_icon"))
 
 # Set page configuration as the first Streamlit command
 if page_icon:
-    st.set_page_config(page_title="Famiology", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="Theoremlabs", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
 else:
-    st.set_page_config(page_title="Famiology", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="Theoremlabs", layout="wide", initial_sidebar_state="expanded")
 
 # Load CSS content
 with open("styles.css", "r") as css_file:
@@ -103,8 +103,6 @@ if title or subheader or description:
 
 # Central section with video or image
 featured_video = content.get('featured_video')
-if featured_video:
-    st.markdown('<h2 style="text-align: center;">Art of Possible Lab</h2>', unsafe_allow_html=True)
     
     # Get video embed details from JSON
     video_embed = featured_video.get('embed_code', '')
