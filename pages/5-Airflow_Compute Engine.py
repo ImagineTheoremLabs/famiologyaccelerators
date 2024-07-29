@@ -3,7 +3,7 @@ from PIL import Image
 import os
 import base64
 import json
-import os
+import io
 
 
 LOGO_PATH = "img/Theoremlabs_logo.png"
