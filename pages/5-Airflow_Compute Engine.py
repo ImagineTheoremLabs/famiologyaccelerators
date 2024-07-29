@@ -1,6 +1,10 @@
 import streamlit as st
 from PIL import Image
 import os
+import base64
+import json
+import os
+
 
 LOGO_PATH = "img/Theoremlabs_logo.png"
 
