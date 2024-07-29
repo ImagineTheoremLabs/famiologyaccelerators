@@ -1,5 +1,97 @@
 import streamlit as st
 
+
+LOGO_PATH = "img/Theoremlabs_logo.png"
+
+page_icon = Image.open("pages/favicon.ico")
+
+# Set page configuration
+st.set_page_config(page_title="Airflow Compute Engine", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
+
+css = """
+/* Sidebar width */
+section[data-testid="stSidebar"] {
+    width: 338px !important;
+}
+
+/* Main content area */
+.main .block-container {
+    max-width: 1200px;
+    padding-top: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Text colors */
+.stText, .stMarkdown, .stTitle, .stSubheader {
+    color: white;
+}
+
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+    font-weight: bold;
+}
+
+/* Sidebar logo */
+[data-testid="stSidebarNav"] {
+    background-repeat: no-repeat;
+    padding-top: 80px;
+    background-position: 20px 20px;
+}
+"""
+
+# Apply CSS styles
+st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+
+# Load and display the sidebar logo
+if os.path.exists(LOGO_PATH):
+    with open(LOGO_PATH, "rb") as file:
+        contents = file.read()
+    img_str = base64.b64encode(contents).decode("utf-8")
+    img = Image.open(io.BytesIO(base64.b64decode(img_str)))
+    
+    # Calculate new dimensions while maintaining aspect ratio
+    max_width = 550
+    max_height = 220
+    img.thumbnail((max_width, max_height))
+    
+    buffer = io.BytesIO()
+    img.save(buffer, format="PNG")
+    img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+
+    # Apply the sidebar logo style
+    st.markdown(
+        f"""
+        <style>
+            [data-testid="stSidebarNav"] {{
+                background-image: url('data:image/png;base64,{img_b64}');
+                background-repeat: no-repeat;
+                background-position: 20px 20px;
+                background-size: auto 160px;
+                padding-top: 140px;
+                background-color: rgba(0, 0, 0, 0);
+            }}
+            [data-testid="stSidebarNav"]::before {{
+                content: "";
+                display: block;
+                height: 140px;
+            }}
+            [data-testid="stSidebarNav"] > ul {{
+                padding-top: 0px;
+            }}
+            .css-17lntkn {{
+                padding-top: 0px !important;
+            }}
+            .css-1544g2n {{
+                padding-top: 0rem;
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# ------------
+
 # Custom CSS for styling
 st.markdown("""
     <style>
