@@ -1,5 +1,5 @@
 import streamlit as st
-
+from PIL import Image
 
 LOGO_PATH = "img/Theoremlabs_logo.png"
 
