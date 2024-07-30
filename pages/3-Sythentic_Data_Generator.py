@@ -20,7 +20,7 @@ LOGO_PATH = "img/Theoremlabs_logo.png"  # Update this path as needed
 page_icon = Image.open("pages/favicon.ico")
 
 # Set page configuration
-st.set_page_config(page_title="Smart Fill", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Synthetic Data Generator", page_icon=page_icon, layout="wide", initial_sidebar_state="expanded")
 
 # Hardcoded CSS styles
 css = """
