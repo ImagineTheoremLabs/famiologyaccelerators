@@ -21,17 +21,11 @@ st.set_page_config(page_title="Customer Performance Dashboard", page_icon=page_i
 
 # Improved CSS styles
 css = """
-/* Global Styles */
-body {
-    color: #ffffff;
-    background-color: #0e1117;
-}
+
 
 /* Sidebar styling */
 [data-testid="stSidebar"] {
-    background-color: #1a1a1a;
-    padding: 2rem 0;
-    border-right: 1px solid #333;
+    width: 338px !important;
 }
 
 /* Main content area */
