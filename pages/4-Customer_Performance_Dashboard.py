@@ -230,8 +230,8 @@ top_5_customers = filtered_df.nlargest(5, 'Net Worth')[['ClientID', 'Net Worth',
 st.table(top_5_customers.style.format({'Net Worth': '${:,.0f}'}))
 
 # Add some interactivity
-if st.button("Refresh Data"):
-    st.experimental_rerun()
+#if st.button("Refresh Data"):
+   # st.experimental_rerun()
 
 # Footer
 st.markdown("---")
