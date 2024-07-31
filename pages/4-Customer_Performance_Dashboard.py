@@ -234,5 +234,5 @@ st.table(top_5_customers.style.format({'Net Worth': '${:,.0f}'}))
    # st.experimental_rerun()
 
 # Footer
-st.markdown("---")
-st.markdown("Dashboard created with Streamlit")
+#st.markdown("---")
+#st.markdown("Dashboard created with Streamlit")
